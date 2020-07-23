@@ -21,7 +21,7 @@
     getUserData: function () {
         var value = localStorage.getItem(Constants.configSession.USER);
         if (value === null) {
-            this.logout();
+            //this.logout();
         }
         return JSON.parse(value);
     },
