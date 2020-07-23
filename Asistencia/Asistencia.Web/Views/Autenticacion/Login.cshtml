@@ -1,0 +1,75 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutLogin.cshtml";
+    ViewBag.Navigation = "Autenticacion";
+    ViewBag.Title = "Login";
+}
+
+    <div class="white-box" id="appLogin">
+        <h3 class="box-title m-b-10">{{ $t("title") }}</h3>
+        <small>{{ $t("help") }}</small>
+        <form class="form-horizontal new-lg-form" ref="loginform" id="loginform" method="get" autocomplete="off">
+            <div class="form-group m-t-10">
+                <div class="col-xs-12">
+                    <label>{{ $t("user") }}</label>
+                    <input class="form-control"
+                           v-model="objUser.Access"
+                           id="Access"
+                           type="text"
+                           @@keypress.enter.prevent="login"
+                           ref="Access"
+                           :placeholder="$t('user')" />
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-xs-12">
+                    <label>{{ $t("password") }}</label>
+                    <input class="form-control"
+                           v-model="objUser.Password"
+                           id="Password"
+                           type="password"
+                           @@keypress.enter.prevent="login"
+                           ref="Password"
+                           :placeholder="$t('password')"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-12">
+                    <div class="checkbox checkbox-info pull-left p-t-0">
+                        <input id="checkbox-signup" type="checkbox">
+                        <label for="checkbox-signup"> {{ $t("remember") }} </label>
+                    </div>
+                    <a href="javascript:void(0)" id="to-recover" class="text-dark pull-right"><i class="fa fa-lock m-r-5"></i> {{ $t("forgot") }}</a>
+                </div>
+            </div>
+            <div class="form-group text-center m-t-20">
+                <div class="col-xs-12">
+                    <button class="btn btn-info btn-lg btn-block btn-rounded text-uppercase waves-effect waves-light" v-on:click.prevent="login()" ref="bntSubmit" type="submit">{{ $t("login") }}</button>
+                </div>
+            </div>
+        </form>
+        <form class="form-horizontal" id="recoverform" action="@Url.Action("Login", "Autenticacion")">
+            <div class="form-group ">
+                <div class="col-xs-12">
+                    <h3>Recover Password</h3>
+                    <p class="text-muted">Ingrese su correo electrónico y las instrucciones serán enviadas a usted! </p>
+                </div>
+            </div>
+            <div class="form-group ">
+                <div class="col-xs-12">
+                    <input class="form-control" type="text" required="" placeholder="Email">
+                </div>
+            </div>
+            <div class="form-group text-center m-t-20">
+                <div class="col-xs-12">
+                    <button class="btn btn-primary btn-lg btn-block text-uppercase waves-effect waves-light" type="submit">Reiniciar</button>
+                </div>
+            </div>
+        </form>
+    </div>
+@section scripts{
+
+    <script type="text/javascript" src="@Url.Content("~/js/Vue/views/login.js")"></script>
+    <script>
+        let rutaIndex = '@Url.Action("Index","Home")';
+    </script>
+}

@@ -7,6 +7,10 @@ Project("{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}") = "Asistencia.Web.Vue", "Asist
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Asistencia.Web", "Asistencia.Web\Asistencia.Web.csproj", "{AA84A51D-BD6A-41A1-9FE1-256BAB7C1147}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1. BackEnd", "1. BackEnd", "{180559C5-D33D-4A6A-9A6D-E35180AFD091}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2. FrontEnd", "2. FrontEnd", "{FEE9E792-AE24-4AD3-A940-4505B9892BB6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,6 +28,10 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{C3A71381-BD5F-426D-848D-2D66FB09D63A} = {FEE9E792-AE24-4AD3-A940-4505B9892BB6}
+		{AA84A51D-BD6A-41A1-9FE1-256BAB7C1147} = {FEE9E792-AE24-4AD3-A940-4505B9892BB6}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {7455E73D-AB16-41F6-BA0A-B985632656F9}
