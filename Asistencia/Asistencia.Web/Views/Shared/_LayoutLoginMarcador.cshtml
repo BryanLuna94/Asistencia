@@ -27,6 +27,7 @@
     <link href="~/AmpleAdmin/css/style.css" rel="stylesheet" />
     <!-- color CSS -->
     <link href="~/AmpleAdmin/css/colors/default.css" id="theme" rel="stylesheet" />
+    <link href="~/AmpleAdmin/plugins/bower_components/switchery/dist/switchery.min.css" rel="stylesheet" />
     <!-- Base Style CSS -->
     <link href="~/css/base.css" rel="stylesheet" />
     @RenderSection("styles", required: false)
@@ -34,19 +35,19 @@
 <body>
     <!-- Preloader -->
     <div>
-        <div ></div>
+        <div></div>
     </div>
-    <section id="wrapper" >
+    <section id="wrapper">
         <div>
             <div>
                 @*<a href="javascript:void(0)" class="p-20 di"><img src="~/AmpleAdmin/plugins/images/dynactrl-complete.png"></a>*@
                 <div>
                     @*<h2> DYNACTRL @DateTime.Now.ToString("yyyy")</h2>*@
-                    <p ></p>
+                    <p></p>
                 </div>
             </div>
         </div>
-        <div >
+        <div>
             <!-- ============================================================== -->
             <!-- Start RenderBody -->
             <!-- ============================================================== -->
@@ -118,9 +119,12 @@
     <script src="~/js/base.js"></script>
     <!--Style Switcher -->
     <script src="~/AmpleAdmin/js/colorTheme.js"></script>
+    <!--Js SWITCH -->
+    <script src="~/AmpleAdmin/plugins/bower_components/switchery/dist/switchery.min.js"></script>
+    <script src="~/AmpleAdmin/plugins/bower_components/styleswitcher/jQuery.style.switcher.js"></script>
     @*<script src="~/locales/locale.js"></script>
-    <script src="~/locales/views/login/en.js"></script>
-    <script src="~/locales/views/login/es.js"></script>*@
+        <script src="~/locales/views/login/en.js"></script>
+        <script src="~/locales/views/login/es.js"></script>*@
     <!-- Javascript for views -->
     @RenderSection("scripts", required: false)
 </body>

@@ -5,19 +5,13 @@
 }
 
 <div class="col-sm-12" id="appMarcador">
-
-
-    <div style="padding-top:70px;">
+    <div>
         <strong>Diseño Pantalla Marcador</strong>
-
-
     </div>
     <div class="row">
         <div class="col-lg-12">
             <div class="">
                 <div class="panel-heading">
-                    @*<button v-on:click.prevent="showEditor()" class="btn btn-outline btn-primary">&nbsp;&nbsp;&nbsp;Add&nbsp;&nbsp;&nbsp;</button>
-                        <div class="pull-right"><a href="#" data-perform="panel-collapse"><i class="ti-plus"></i></a></div>*@
                     <div class="form-group m-b-0">
                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 m-b-5">
                             <div class="row">
@@ -26,7 +20,6 @@
                                 </div>
                                 <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2" style="padding-left:2px; padding-right:2px;">
                                     <label class="col-xs-12 col-sm-12 col-md-12 col-lg-12 m-b-0 p-0 text-black-50">
-                                        @*22-07-2020*@
                                         {{fechaHoy}}
                                     </label>
                                 </div>
@@ -48,29 +41,27 @@
                                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 m-b-5">
                                     <div class="row">
                                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="padding-left:1px; padding-right:2px;">
-                                            <label class="col-xs-12 col-sm-12 col-md-12 col-lg-12 m-b-0 p-0" style="font-size:150px; text-align:center; background-color:black; color:white">
+                                            <label class="col-xs-12 col-sm-12 col-md-12 col-lg-12 m-b-0 p-0" style="font-size:50px; text-align:center; background-color:black; color:white">
                                                 {{message}}
                                             </label>
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1" style="padding-left:1px; padding-right:2px;">
-                                            <input class="form-check-input col-xs-12 col-sm-12 col-md-12 col-lg-12 m-b-0 p-0" type="checkbox" />
+                                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 pull-right">
+                                            <div class="form-group">
+                                                <label class="control-label">MARCADO ESPECIAL</label>
+                                                <div class="m-b-30">
+                                                    <input type="checkbox" checked class="js-switch" data-color="#f96262" data-size="small" />
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div class="col-xs-11 col-sm-11 col-md-11 col-lg-11" style="padding-left:1px; padding-right:2px;">
-                                            <label class="col-xs-12 col-sm-12 col-md-12 col-lg-12 m-b-0 p-0">
-                                                MARCADO ESPECIAL
-                                            </label>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" style="padding-left:1px; padding-right:2px;">
-                                            <label class="col-xs-12 col-sm-12 col-md-12 col-lg-12 m-b-0 p-0" style="text-align:center; vertical-align:central;">
-                                                COD. DE ASISTENCIA:
-                                            </label>
-                                        </div>
-                                        <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5" style="padding-left:1px; padding-right:2px;">
-                                            <input class="form-control" v-on:keyup="LlenarDatosTrabajador" type="password" />
+                                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                            <div class="form-group">
+                                                <label class="control-label">COD. DE ASISTENCIA</label>
+                                                <div class="m-b-30">
+                                                    <input class="form-control" v-on:keyup="LlenarDatosTrabajador" type="password" />
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                     <hr />
@@ -287,7 +278,6 @@
 </div>
 
 @section Scripts{
-
 
     <script src="~/js/Vue/Views/Marcador.js"></script>
 }
