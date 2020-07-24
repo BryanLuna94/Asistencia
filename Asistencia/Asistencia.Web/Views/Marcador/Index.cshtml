@@ -5,15 +5,14 @@
 }
 
 <div class="col-sm-12" id="appMarcador">
-    <div>
-        <strong>Diseño Pantalla Marcador</strong>
-    </div>
+ 
     <div class="row">
         <div class="col-lg-12">
             <div class="">
                 <div class="panel-heading">
                     <div class="form-group m-b-0">
                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 m-b-5">
+                            <hr />
                             <div class="row">
                                 <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2" style="padding-left:1px; padding-right:2px;">
                                     <label class="col-xs-12 col-sm-12 col-md-12 col-lg-12 m-b-0 p-0">FECHA:</label>
@@ -40,22 +39,48 @@
                             <div class="form-group m-b-0">
                                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 m-b-5">
                                     <div class="row">
-                                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="padding-left:1px; padding-right:2px;">
-                                            <label class="col-xs-12 col-sm-12 col-md-12 col-lg-12 m-b-0 p-0" style="font-size:50px; text-align:center; background-color:black; color:white">
-                                                {{message}}
-                                            </label>
-                                        </div>
+                                        
+                                            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6" style="padding-left:1px; padding-right:2px;">
+
+                                                <label class="col-xs-12 col-sm-12 col-md-12 col-lg-12 m-b-0 p-0" style="font-size:50px; text-align:center; background-color:black; color:white">
+                                                    {{message}}
+                                                </label>
+                                            </div>
+                                       
+
+                                      
+
+                                            <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 pull-right">
+                                                <div class="form-group">
+                                                    <label class="control-label">MARCADO ESPECIAL</label>
+                                                    <div class="m-b-30">
+                                                        <input type="checkbox" checked class="js-switch" data-color="#f96262" data-size="small" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                                                <div class="form-group">
+                                                    <label class="control-label">COD. DE ASISTENCIA</label>
+                                                    <div class="m-b-30">
+                                                        <input class="form-control" v-on:keyup="LlenarDatosTrabajador" type="password" />
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        
+
+
                                     </div>
                                     <div class="row">
-                                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 pull-right">
+                                        @*<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 pull-right">
                                             <div class="form-group">
                                                 <label class="control-label">MARCADO ESPECIAL</label>
                                                 <div class="m-b-30">
                                                     <input type="checkbox" checked class="js-switch" data-color="#f96262" data-size="small" />
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                        </div>*@
+                                        @*<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
                                             <div class="form-group">
                                                 <label class="control-label">COD. DE ASISTENCIA</label>
                                                 <div class="m-b-30">
@@ -63,9 +88,15 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 pull-right">
+
+                                        </div>*@
                                     </div>
                                     <hr />
-                                    DATOS DEL TRABAJADOR
+                                    <div>
+                                        <label>DATOS DEL TRABAJADOR</label>
+                                    </div>
+
                                     <hr />
                                     <div class="row">
                                         <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" style="padding-left:1px; padding-right:2px; padding-bottom:2px;">
@@ -74,13 +105,13 @@
                                             </label>
                                         </div>
                                         <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" style="padding-left:1px; padding-right:2px; padding-bottom:2px;">
-                                            <input class="form-control" disabled v-model="objMarcador.codTrabajador" />
+                                            <input class="col-xs-12 col-sm-12 col-md-12 col-lg-12" disabled v-model="objMarcador.codTrabajador" />
                                         </div>
                                         <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1" style="padding-left:1px; padding-right:2px; padding-bottom:2px;">
-                                            <input class="form-control" disabled v-model="objMarcador.cod2Trabajador" />
+                                            <input class="col-xs-12 col-sm-12 col-md-12 col-lg-12" disabled v-model="objMarcador.cod2Trabajador" />
                                         </div>
                                         <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5" style="padding-left:1px; padding-right:2px; padding-bottom:2px;">
-                                            <input class="form-control" disabled v-model="objMarcador.nombreTrabajador" />
+                                            <input class="col-xs-12 col-sm-12 col-md-12 col-lg-12" disabled v-model="objMarcador.nombreTrabajador" />
                                         </div>
                                     </div>
 
@@ -91,10 +122,10 @@
                                             </label>
                                         </div>
                                         <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" style="padding-left:1px; padding-right:2px; padding-bottom:2px;">
-                                            <input class="form-control" disabled v-model="objMarcador.codSucursal" />
+                                            <input class="col-xs-12 col-sm-12 col-md-12 col-lg-12" disabled v-model="objMarcador.codSucursal" />
                                         </div>
                                         <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6" style="padding-left:1px; padding-right:2px; padding-bottom:2px;">
-                                            <input class="form-control" disabled v-model="objMarcador.nomSucursal" />
+                                            <input class="col-xs-12 col-sm-12 col-md-12 col-lg-12" disabled v-model="objMarcador.nomSucursal" />
                                         </div>
                                     </div>
 
@@ -105,10 +136,10 @@
                                             </label>
                                         </div>
                                         <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" style="padding-left:1px; padding-right:2px; padding-bottom:2px;">
-                                            <input class="form-control" disabled v-model="objMarcador.codArea" />
+                                            <input class="col-xs-12 col-sm-12 col-md-12 col-lg-12" disabled v-model="objMarcador.codArea" />
                                         </div>
                                         <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6" style="padding-left:1px; padding-right:2px; padding-bottom:2px;">
-                                            <input class="form-control" disabled v-model="objMarcador.nomArea" />
+                                            <input class="col-xs-12 col-sm-12 col-md-12 col-lg-12" disabled v-model="objMarcador.nomArea" />
                                         </div>
                                     </div>
 
@@ -119,15 +150,16 @@
                                             </label>
                                         </div>
                                         <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" style="padding-left:1px; padding-right:2px; padding-bottom:2px;">
-                                            <input class="form-control" disabled v-model="objMarcador.codSubArea" />
+                                            <input class="col-xs-12 col-sm-12 col-md-12 col-lg-12" disabled v-model="objMarcador.codSubArea" />
                                         </div>
                                         <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6" style="padding-left:1px; padding-right:2px; padding-bottom:2px;">
-                                            <input class="form-control" disabled v-model="objMarcador.nomSubArea" />
+                                            <input class="col-xs-12 col-sm-12 col-md-12 col-lg-12" disabled v-model="objMarcador.nomSubArea" />
                                         </div>
                                     </div>
 
                                     <hr />
-                                    DATOS DEL MARCADO
+                                    <label>DATOS DEL MARCADO</label>
+                                    
                                     <hr />
 
                                     <div class="row">
@@ -137,7 +169,7 @@
                                             </label>
                                         </div>
                                         <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" style="padding-left:1px; padding-right:2px; padding-bottom:2px;">
-                                            <input class="form-control" disabled v-model="objMarcador.fIngresoUno" />
+                                            <input class="col-xs-12 col-sm-12 col-md-12 col-lg-12" disabled v-model="objMarcador.fIngresoUno" />
                                         </div>
                                         <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" style="padding-left:1px; padding-right:2px;">
                                             <label class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="padding-left: 50px; vertical-align: central;">
@@ -145,7 +177,7 @@
                                             </label>
                                         </div>
                                         <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" style="padding-left:1px; padding-right:2px; padding-bottom:2px;">
-                                            <input class="form-control" disabled />
+                                            <input class="col-xs-12 col-sm-12 col-md-12 col-lg-12" disabled />
                                         </div>
                                     </div>
 
@@ -156,7 +188,7 @@
                                             </label>
                                         </div>
                                         <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" style="padding-left:1px; padding-right:2px; padding-bottom:2px;">
-                                            <input class="form-control" disabled v-model="objMarcador.hIngresoUno" />
+                                            <input class="col-xs-12 col-sm-12 col-md-12 col-lg-12" disabled v-model="objMarcador.hIngresoUno" />
                                         </div>
                                         <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" style="padding-left:1px; padding-right:2px;">
                                             <label class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="padding-left: 50px; vertical-align: central;">
@@ -164,7 +196,7 @@
                                             </label>
                                         </div>
                                         <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" style="padding-left:1px; padding-right:2px; padding-bottom:2px;">
-                                            <input class="form-control" disabled />
+                                            <input class="col-xs-12 col-sm-12 col-md-12 col-lg-12" disabled />
                                         </div>
                                     </div>
 
@@ -175,7 +207,7 @@
                                             </label>
                                         </div>
                                         <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" style="padding-left:1px; padding-right:2px; padding-bottom:2px;">
-                                            <input class="form-control" disabled />
+                                            <input class="col-xs-12 col-sm-12 col-md-12 col-lg-12" disabled />
                                         </div>
                                         <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" style="padding-left:1px; padding-right:2px;">
                                             <label class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="padding-left: 50px; vertical-align: central;">
@@ -183,7 +215,7 @@
                                             </label>
                                         </div>
                                         <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" style="padding-left:1px; padding-right:2px; padding-bottom:2px;">
-                                            <input class="form-control" disabled />
+                                            <input class="col-xs-12 col-sm-12 col-md-12 col-lg-12" disabled />
                                         </div>
                                     </div>
 
@@ -194,7 +226,7 @@
                                             </label>
                                         </div>
                                         <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" style="padding-left:1px; padding-right:2px; padding-bottom:2px;">
-                                            <input class="form-control" disabled />
+                                            <input class="col-xs-12 col-sm-12 col-md-12 col-lg-12" disabled />
                                         </div>
                                         <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" style="padding-left:1px; padding-right:2px;">
                                             <label class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="padding-left: 50px; vertical-align: central;">
@@ -202,7 +234,7 @@
                                             </label>
                                         </div>
                                         <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" style="padding-left:1px; padding-right:2px; padding-bottom:2px;">
-                                            <input class="form-control" disabled />
+                                            <input class="col-xs-12 col-sm-12 col-md-12 col-lg-12" disabled />
                                         </div>
                                     </div>
 
@@ -213,10 +245,10 @@
                                             </label>
                                         </div>
                                         <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" style="padding-left:1px; padding-right:2px; padding-bottom:2px;">
-                                            <input class="form-control" disabled v-model="objMarcador.cod2Sucursal" />
+                                            <input class="col-xs-12 col-sm-12 col-md-12 col-lg-12" disabled v-model="objMarcador.cod2Sucursal" />
                                         </div>
                                         <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6" style="padding-left:1px; padding-right:2px; padding-bottom:2px;">
-                                            <input class="form-control" disabled v-model="objMarcador.nom2Sucursal" />
+                                            <input class="col-xs-12 col-sm-12 col-md-12 col-lg-12" disabled v-model="objMarcador.nom2Sucursal" />
                                         </div>
                                     </div>
 
@@ -227,10 +259,10 @@
                                             </label>
                                         </div>
                                         <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" style="padding-left:1px; padding-right:2px; padding-bottom:2px;">
-                                            <input class="form-control" disabled v-model="objMarcador.cod2Area" />
+                                            <input class="col-xs-12 col-sm-12 col-md-12 col-lg-12" disabled v-model="objMarcador.cod2Area" />
                                         </div>
                                         <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6" style="padding-left:1px; padding-right:2px; padding-bottom:2px;">
-                                            <input class="form-control" disabled v-model="objMarcador.nom2Area" />
+                                            <input class="col-xs-12 col-sm-12 col-md-12 col-lg-12" disabled v-model="objMarcador.nom2Area" />
                                         </div>
                                     </div>
 
@@ -241,10 +273,10 @@
                                             </label>
                                         </div>
                                         <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" style="padding-left:1px; padding-right:2px; padding-bottom:2px;">
-                                            <input class="form-control" disabled v-model="objMarcador.cod2SubArea" />
+                                            <input class="col-xs-12 col-sm-12 col-md-12 col-lg-12" disabled v-model="objMarcador.cod2SubArea" />
                                         </div>
                                         <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6" style="padding-left:1px; padding-right:2px; padding-bottom:2px;">
-                                            <input class="form-control" disabled v-model="objMarcador.nom2SubArea" />
+                                            <input class="col-xs-12 col-sm-12 col-md-12 col-lg-12" disabled v-model="objMarcador.nom2SubArea" />
                                         </div>
                                     </div>
 
