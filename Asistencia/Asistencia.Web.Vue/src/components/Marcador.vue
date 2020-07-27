@@ -50,12 +50,14 @@
 		                                        </div>
 
 		                                        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-		                                            <div class="form-group">
-		                                                <label for="codigo">COD. DE ASISTENCIA</label>
+		                                            <div class="form-group" :class="{ 'form-group--error': $v.codigo.$error }">
+		                                                <label>COD. DE ASISTENCIA</label>
 		                                                <div class="m-b-30">
-		                                                    <input class="form-control" type="password" v-on:keyup="LlenarDatosTrabajador" />
+		                                                    <input v-focus class="form-control" type="password"  v-model.trim="codigo" @input="setCodigo($event.target.value)" v-on:keyup="LlenarDatosTrabajador" />
 		                                                </div>
 		                                            </div>
+													<div class="error" v-if="!$v.codigo.required">El campo es requerido.</div>
+													<div class="error" v-if="!$v.codigo.minLength">El codigo debe tener al menos {{$v.codigo.$params.minLength.min}} caracteres.</div>
 		                                        </div>
 
 
@@ -329,6 +331,11 @@
             }
         },
         methods:{
+			setCodigo(value) {
+			this.codigo = value
+			this.$v.codigo.$touch()
+			},
+
 	        callFunction() {
 
 	            var currentDate = new Date();
@@ -341,20 +348,25 @@
 
 	        },
 	        LlenarDatosTrabajador: function (e) {
-	            if (e.keyCode === 13) {
-	                this.objMarcador.codTrabajador = 'E0014';
-	                this.objMarcador.cod2Trabajador= 'E';
-	                this.objMarcador.nombreTrabajador= 'PEDRO ENRIQUE';
-	                this.objMarcador.codSucursal= '003';
-	                this.objMarcador.nomSucursal= '06 TERMINAL FLORES LIMA';
-	                this.objMarcador.codArea = '01';
-	                this.objMarcador.nomArea = 'ADMINISTRACION';
-	                this.objMarcador.codSubArea = '01';
-	                this.objMarcador.nomSubArea = 'ADMINISTRACION';
+				
+				if (this.$v.$invalid) {
+					
+				}else {
+					if (e.keyCode === 13) {
+						this.objMarcador.codTrabajador = 'E0014';
+						this.objMarcador.cod2Trabajador= 'E';
+						this.objMarcador.nombreTrabajador= 'PEDRO ENRIQUE';
+						this.objMarcador.codSucursal= '003';
+						this.objMarcador.nomSucursal= '06 TERMINAL FLORES LIMA';
+						this.objMarcador.codArea = '01';
+						this.objMarcador.nomArea = 'ADMINISTRACION';
+						this.objMarcador.codSubArea = '01';
+						this.objMarcador.nomSubArea = 'ADMINISTRACION';
 
-	            } else {
-	                this.clearMarcador();
-	            }
+					} else {
+						this.clearMarcador();
+					}
+				}
 	        },
 	        LlenarDatosTrabajadorMarcado: function () {
 
@@ -413,5 +425,54 @@
     };
 </script>
 
-<style>
+<style type="text/css">
+.form-group--error {
+  animation-name: shakeError;
+  animation-fill-mode: forwards;
+  animation-duration: .6s;
+  animation-timing-function: ease-in-out; }
+
+.form-group--error input,
+.form-group--error textarea,
+.form-group--error input:focus,
+.form-group--error input:hover {
+  border-color: #f79483; }
+
+
+
+.form-group__message, .error {
+  font-size: 0.75rem;
+  line-height: 1;
+  display: none;
+  margin-left: 14px;
+  /* margin-top: -1.6875rem; */
+  margin-bottom: 0.9375rem; }
+
+.form-group--error + .form-group__message, .form-group--error + .error {
+  display: block;
+  color: #f57f6c; }
+
+
+
+@keyframes shakeError {
+  0% {
+    transform: translateX(0); }
+  15% {
+    transform: translateX(0.375rem); }
+  30% {
+    transform: translateX(-0.375rem); }
+  45% {
+    transform: translateX(0.375rem); }
+  60% {
+    transform: translateX(-0.375rem); }
+  75% {
+    transform: translateX(0.375rem); }
+  90% {
+    transform: translateX(-0.375rem); }
+  100% {
+    transform: translateX(0); } }
+
+
+
+
 </style>

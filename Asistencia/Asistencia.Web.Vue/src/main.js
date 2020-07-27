@@ -19,6 +19,15 @@ Vue.use(Vuelidate);
 
 Vue.config.productionTip = true;
 
+// Registra una directiva personalizada global llamada `v-focus`
+Vue.directive('focus', {
+    // Cuando el elemento enlazado se inserta en el DOM...
+    inserted: function (el) {
+      // Enfoca el elemento
+      el.focus()
+    }
+  })
+
 const routes = [
     {path:'/marcador', component:Marcador},
     {path:'/', component:App},
