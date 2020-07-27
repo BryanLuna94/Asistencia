@@ -1,6 +1,10 @@
 <template>
     <div id="app">
-        <Home msg="Hello world!" />
+        <Home msg="Logo Manoooooo!" />
+
+        <router-view>
+      
+        </router-view>
     </div>
 </template>
 
