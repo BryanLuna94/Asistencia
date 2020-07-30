@@ -1,12 +1,10 @@
 <template>
     <div class="col-sm-12">
         <h2>Este es el {{ titulo }}</h2>
-
 		<div class="col-sm-12">
 			<div class="row">
 				<div class="col-lg-12">
 					<div>
-
 		        		<div class="panel-heading">
 		        			<div class="form-group m-b-0">
 		                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 m-b-5">
@@ -20,7 +18,6 @@
 		                                        {{fechaHoy}}
 		                                    </label>
 		                                </div>
-
 		                                <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2" style="padding-left:1px; padding-right:2px;">
 		                                    <label class="col-xs-12 col-sm-12 col-md-12 col-lg-12 m-b-0 p-0">SUCURSAL:</label>
 		                                </div>
@@ -32,23 +29,18 @@
                             	
 		        			</div>
 		        		</div>
-
 		                <div>
 		                    <div class="panel-body">
-
 		                        <form class="form-horizontal">
 		                            <div class="form-group m-b-0">
 		                            	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 m-b-5">
-
 		                                    <div class="row">
-
 		                                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6" style="padding-left:1px; padding-right:2px;">
 
 		                                            <label class="col-xs-12 col-sm-12 col-md-12 col-lg-12 m-b-0 p-0" style="font-size:50px; text-align:center; background-color:black; color:white">
 		                                                {{message}}
 		                                            </label>
 		                                        </div>
-
 		                                        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
 		                                            <div class="form-group" :class="{ 'form-group--error': $v.codigo.$error }">
 		                                                <label>COD. DE ASISTENCIA</label>
@@ -59,8 +51,6 @@
 													<div class="error" v-if="!$v.codigo.required">El campo es requerido.</div>
 													<div class="error" v-if="!$v.codigo.minLength">El codigo debe tener al menos {{$v.codigo.$params.minLength.min}} caracteres.</div>
 		                                        </div>
-
-
 		                                        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 pull-right">
 		                                            <div class="form-group">
 		                                                <label >MARCADO ESPECIAL</label>
@@ -69,14 +59,11 @@
 		                                                </div>
 		                                            </div>
 		                                        </div>
-
 		                                    </div>
-
 		                                    <hr />
 		                                    <div>
 		                                        <label>DATOS DEL TRABAJADOR</label>
 		                                    </div>
-
 		                                    <div class="row">
 		                                        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2" style="padding-left:1px; padding-right:2px; padding-bottom:2px;">
 		                                            <label class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="padding-left: 50px; vertical-align: central;">
@@ -104,9 +91,7 @@
 		                                        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2" style="padding-left:1px; padding-right:2px; padding-bottom:2px;">
 		                                            <input class="col-xs-12 col-sm-12 col-md-12 col-lg-12" disabled v-model="objMarcador.nomArea" />
 		                                        </div>
-
 		                                    </div>
-
 		                                    <div class="row">
 		                                        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2" style="padding-left:1px; padding-right:2px;">
 		                                            <label class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="padding-left: 50px; vertical-align: central;">
@@ -119,7 +104,6 @@
 		                                        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4" style="padding-left:1px; padding-right:2px; padding-bottom:2px;">
 		                                            <input class="col-xs-12 col-sm-12 col-md-12 col-lg-12" disabled v-model="objMarcador.nomSucursal" />
 		                                        </div>
-
 		                                        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2" style="padding-left:1px; padding-right:2px;">
 		                                            <label class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="vertical-align: central;">
 		                                                SUB AREA:
@@ -131,9 +115,7 @@
 		                                        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2" style="padding-left:1px; padding-right:2px; padding-bottom:2px;">
 		                                            <input class="col-xs-12 col-sm-12 col-md-12 col-lg-12" disabled v-model="objMarcador.nomSubArea" />
 		                                        </div>
-
 		                                    </div>
-
 		                                    <hr />
 		                                    <label>DATOS DEL MARCADO</label>
 
@@ -155,7 +137,6 @@
 		                                            <input class="col-xs-12 col-sm-12 col-md-12 col-lg-12" disabled />
 		                                        </div>
 		                                    </div>
-
 		                                    <div class="row">
 		                                        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" style="padding-left:1px; padding-right:2px;">
 		                                            <label class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="padding-left: 50px; vertical-align: central;">
@@ -174,7 +155,6 @@
 		                                            <input class="col-xs-12 col-sm-12 col-md-12 col-lg-12" disabled />
 		                                        </div>
 		                                    </div>
-
 		                                    <div class="row">
 		                                        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" style="padding-left:1px; padding-right:2px;">
 		                                            <label class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="padding-left: 50px; vertical-align: central;">
@@ -193,7 +173,6 @@
 		                                            <input class="col-xs-12 col-sm-12 col-md-12 col-lg-12" disabled />
 		                                        </div>
 		                                    </div>
-
 		                                    <div class="row">
 		                                        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" style="padding-left:1px; padding-right:2px;">
 		                                            <label class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="padding-left: 50px; vertical-align: central;">
@@ -212,7 +191,6 @@
 		                                            <input class="col-xs-12 col-sm-12 col-md-12 col-lg-12" disabled />
 		                                        </div>
 		                                    </div>
-
 		                                    <div class="row">
 		                                        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" style="padding-left:1px; padding-right:2px;">
 		                                            <label class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="padding-left: 50px; vertical-align: central;">
@@ -226,7 +204,6 @@
 		                                            <input class="col-xs-12 col-sm-12 col-md-12 col-lg-12" disabled v-model="objMarcador.nom2Sucursal" />
 		                                        </div>
 		                                    </div>
-
 		                                    <div class="row">
 		                                        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" style="padding-left:1px; padding-right:2px;">
 		                                            <label class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="padding-left: 50px; vertical-align: central;">
@@ -240,7 +217,6 @@
 		                                            <input class="col-xs-12 col-sm-12 col-md-12 col-lg-12" disabled v-model="objMarcador.nom2Area" />
 		                                        </div>
 		                                    </div>
-
 		                                    <div class="row">
 		                                        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" style="padding-left:1px; padding-right:2px;">
 		                                            <label class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="padding-left: 50px; vertical-align: central;">
@@ -254,15 +230,11 @@
 		                                            <input class="col-xs-12 col-sm-12 col-md-12 col-lg-12" disabled v-model="objMarcador.nom2SubArea" />
 		                                        </div>
 		                                    </div>
-
-
 		                            	</div>
 		                        	</div>
 		                        </form>
-
 		                    </div>
 	                    </div>
-
 		                <div class="panel-footer">
 		                    <div class="form-group m-b-0">
 		                        <div class="row">
@@ -279,7 +251,6 @@
 		                        </div>
 		                    </div>
 		                </div>
-
 					</div>
 				</div>
 			</div>
@@ -305,7 +276,6 @@
 				codigo: '',
 		        objMarcador: {
 		            id: 0,
-		            
 		            flagMarcadoEspecial: false,
 		            codigoAsistencia: 0,
 		            codTrabajador: '',
@@ -317,14 +287,12 @@
 		            nomArea: '',
 		            codSubArea: '',
 		            nomSubArea: '',
-
 		            cod2Sucursal: '',
 		            nom2Sucursal: '',
 		            cod2Area: '',
 		            nom2Area: '',
 		            cod2SubArea: '',
 		            nom2SubArea: '',
-
 		            fIngresoUno: '',
 		            hIngresoUno: '',
 		        },
@@ -339,10 +307,8 @@
 	        callFunction() {
 
 	            var currentDate = new Date();
-	            //console.log(currentDate);
 
 	            var currentDateWithFormat = moment(currentDate, 'YYYY-MM-DD hh:mm:ss').format('hh:mm:ss a');
-	            //console.log(currentDateWithFormat);
 	            this.message = currentDateWithFormat;
 	            this.fechaHoy = moment(currentDate, 'YYYY-MM-DD hh:mm:ss').format('DD-MM-YYYY');
 
@@ -438,21 +404,16 @@
 .form-group--error input:hover {
   border-color: #f79483; }
 
-
-
 .form-group__message, .error {
   font-size: 0.75rem;
   line-height: 1;
   display: none;
   margin-left: 14px;
-  /* margin-top: -1.6875rem; */
   margin-bottom: 0.9375rem; }
 
 .form-group--error + .form-group__message, .form-group--error + .error {
   display: block;
   color: #f57f6c; }
-
-
 
 @keyframes shakeError {
   0% {
@@ -471,8 +432,5 @@
     transform: translateX(-0.375rem); }
   100% {
     transform: translateX(0); } }
-
-
-
 
 </style>
