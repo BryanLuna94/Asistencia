@@ -4,12 +4,14 @@ using System.Linq;
 using System.Threading.Tasks;
 using Asistencia.BusinessLayer;
 using Asistencia.WebApi.Utility;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 
 namespace Asistencia.WebApi.Controllers
 {
+    [AllowAnonymous]
     public class EmpleadoController : Controller
     {
         private readonly EmpleadoLogic _empleadoLogic;

@@ -386,8 +386,25 @@
 	            _this.objMarcador.cod2SubArea = '';
 	            _this.objMarcador.nom2SubArea = '';
 			},
-			
+
 			ObtenerEmpleado(itemEmpleado){
+				axios.get("https://localhost:44343/api/Empleado/SelectEmpleado/48332432", {
+				headers: {
+					'Content-Type': 'application/json'
+					}
+				})
+            .then(res => {
+                if (res.data.isCorrect) {
+                    return res;
+                }
+
+            })
+            .catch(error => {
+                console.log(error);
+            });
+			},
+			
+			ObtenerEmpleado2(itemEmpleado){
 				axios.get('http://localhost:8091/api/Empleado/SelectEmpleado/' + itemEmpleado)
                 .then((respuesta) => {
                     _this.objEmpleado = respuesta.data.value.empleado;
