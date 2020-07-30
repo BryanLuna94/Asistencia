@@ -17,5 +17,7 @@ namespace Asistencia.DataAccess.Connection
             SqlConnection con = new SqlConnection(_configuration.GetConnectionString("DBPLANILLA"));
             return con;
         }
+
+
     }
 }

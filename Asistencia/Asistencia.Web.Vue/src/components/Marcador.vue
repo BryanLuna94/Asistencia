@@ -71,13 +71,13 @@
 		                                            </label>
 		                                        </div>
 		                                        <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1" style="padding-left:1px; padding-right:2px; padding-bottom:2px;">
-		                                            <input class="col-xs-12 col-sm-12 col-md-12 col-lg-12" disabled v-model="objMarcador.codTrabajador" />
+		                                            <input class="col-xs-12 col-sm-12 col-md-12 col-lg-12" disabled v-model="objEmpleado.codigo" />
 		                                        </div>
 		                                        <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1" style="padding-left:1px; padding-right:2px; padding-bottom:2px;">
-		                                            <input class="col-xs-12 col-sm-12 col-md-12 col-lg-12" disabled v-model="objMarcador.cod2Trabajador" />
+		                                            <input class="col-xs-12 col-sm-12 col-md-12 col-lg-12" disabled v-model="objEmpleado.tipo" />
 		                                        </div>
 		                                        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" style="padding-left:1px; padding-right:2px; padding-bottom:2px;">
-		                                            <input class="col-xs-12 col-sm-12 col-md-12 col-lg-12" disabled v-model="objMarcador.nombreTrabajador" />
+		                                            <input class="col-xs-12 col-sm-12 col-md-12 col-lg-12" disabled v-model="objEmpleado.nombre" />
 		                                        </div>
 
 		                                        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2" style="padding-left:1px; padding-right:2px;">
@@ -86,10 +86,10 @@
 		                                            </label>
 		                                        </div>
 		                                        <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1" style="padding-left:1px; padding-right:2px; padding-bottom:2px;">
-		                                            <input class="col-xs-12 col-sm-12 col-md-12 col-lg-12" disabled v-model="objMarcador.codArea" />
+		                                            <input class="col-xs-12 col-sm-12 col-md-12 col-lg-12" disabled v-model="objEmpleado.codigoArea" />
 		                                        </div>
 		                                        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2" style="padding-left:1px; padding-right:2px; padding-bottom:2px;">
-		                                            <input class="col-xs-12 col-sm-12 col-md-12 col-lg-12" disabled v-model="objMarcador.nomArea" />
+		                                            <input class="col-xs-12 col-sm-12 col-md-12 col-lg-12" disabled v-model="objEmpleado.nombreArea" />
 		                                        </div>
 		                                    </div>
 		                                    <div class="row">
@@ -99,10 +99,10 @@
 		                                            </label>
 		                                        </div>
 		                                        <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1" style="padding-left:1px; padding-right:2px; padding-bottom:2px;">
-		                                            <input class="col-xs-12 col-sm-12 col-md-12 col-lg-12" disabled v-model="objMarcador.codSucursal" />
+		                                            <input class="col-xs-12 col-sm-12 col-md-12 col-lg-12" disabled v-model="objEmpleado.codigoSucursal" />
 		                                        </div>
 		                                        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4" style="padding-left:1px; padding-right:2px; padding-bottom:2px;">
-		                                            <input class="col-xs-12 col-sm-12 col-md-12 col-lg-12" disabled v-model="objMarcador.nomSucursal" />
+		                                            <input class="col-xs-12 col-sm-12 col-md-12 col-lg-12" disabled v-model="objEmpleado.nombreSucursal" />
 		                                        </div>
 		                                        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2" style="padding-left:1px; padding-right:2px;">
 		                                            <label class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="vertical-align: central;">
@@ -110,10 +110,10 @@
 		                                            </label>
 		                                        </div>
 		                                        <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1" style="padding-left:1px; padding-right:2px; padding-bottom:2px;">
-		                                            <input class="col-xs-12 col-sm-12 col-md-12 col-lg-12" disabled v-model="objMarcador.codSubArea" />
+		                                            <input class="col-xs-12 col-sm-12 col-md-12 col-lg-12" disabled v-model="objEmpleado.codigoSubArea" />
 		                                        </div>
 		                                        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2" style="padding-left:1px; padding-right:2px; padding-bottom:2px;">
-		                                            <input class="col-xs-12 col-sm-12 col-md-12 col-lg-12" disabled v-model="objMarcador.nomSubArea" />
+		                                            <input class="col-xs-12 col-sm-12 col-md-12 col-lg-12" disabled v-model="objEmpleado.nombreSubArea" />
 		                                        </div>
 		                                    </div>
 		                                    <hr />
@@ -259,7 +259,8 @@
 </template>
 
 <script>
-    import moment from 'moment';
+	import moment from 'moment';
+	import axios from 'axios';
 	import { required, minLength, between } from 'vuelidate/lib/validators';
 
     export default {
@@ -274,19 +275,24 @@
 				message: '',
 				fechaHoy: '',
 				codigo: '',
+				flagMarcadoEspecial: false,
+				
+				objEmpleado: {
+		            codigo: '',
+		            tipo: '',
+					nombre: '',
+		            codigoSucursal: '',
+		            nombreSucursal: '',
+		            codigoArea: '',
+		            nombreArea: '',
+		            codigoSubArea: '',
+		            nombreSubArea: '',
+				},
+				objFilter :{
+					codigoAsistencia: 0,
+				},
 		        objMarcador: {
 		            id: 0,
-		            flagMarcadoEspecial: false,
-		            codigoAsistencia: 0,
-		            codTrabajador: '',
-		            cod2Trabajador: '',
-		            nombreTrabajador: '',
-		            codSucursal: '',
-		            nomSucursal: '',
-		            codArea: '',
-		            nomArea: '',
-		            codSubArea: '',
-		            nomSubArea: '',
 		            cod2Sucursal: '',
 		            nom2Sucursal: '',
 		            cod2Area: '',
@@ -300,8 +306,9 @@
         },
         methods:{
 			setCodigo(value) {
-			this.codigo = value
-			this.$v.codigo.$touch()
+				this.objFilter.codigoAsistencia = value;
+				this.codigo = value;
+				this.$v.codigo.$touch()
 			},
 
 	        callFunction() {
@@ -316,18 +323,20 @@
 	        LlenarDatosTrabajador: function (e) {
 				
 				if (this.$v.$invalid) {
-					
 				}else {
 					if (e.keyCode === 13) {
-						this.objMarcador.codTrabajador = 'E0014';
-						this.objMarcador.cod2Trabajador= 'E';
-						this.objMarcador.nombreTrabajador= 'PEDRO ENRIQUE';
-						this.objMarcador.codSucursal= '003';
-						this.objMarcador.nomSucursal= '06 TERMINAL FLORES LIMA';
-						this.objMarcador.codArea = '01';
-						this.objMarcador.nomArea = 'ADMINISTRACION';
-						this.objMarcador.codSubArea = '01';
-						this.objMarcador.nomSubArea = 'ADMINISTRACION';
+
+						this.ObtenerEmpleado(this.objFilter.codigoAsistencia);
+						
+						this.objEmpleado.codigo = 'E0014';
+						this.objEmpleado.tipo= 'E';
+						this.objEmpleado.nombre= 'PEDRO ENRIQUE';
+						this.objEmpleado.codigoSucursal= '003';
+						this.objEmpleado.nombreSucursal= '06 TERMINAL FLORES LIMA';
+						this.objEmpleado.codigoArea = '01';
+						this.objEmpleado.nombreArea = 'ADMINISTRACION';
+						this.objEmpleado.codigoSubArea = '01';
+						this.objEmpleado.nombreSubArea = 'ADMINISTRACION';
 
 					} else {
 						this.clearMarcador();
@@ -376,7 +385,21 @@
 	            _this.objMarcador.nom2Area = '';
 	            _this.objMarcador.cod2SubArea = '';
 	            _this.objMarcador.nom2SubArea = '';
-	        },
+			},
+			
+			ObtenerEmpleado(itemEmpleado){
+				axios.get('http://localhost:8091/api/Empleado/SelectEmpleado/' + itemEmpleado)
+                .then((respuesta) => {
+                    _this.objEmpleado = respuesta.data.value.empleado;
+                },
+                {
+                    headers: { "Access-Control-Allow-Origin": "*" }
+                })
+                .catch(error => {
+                    //error.response.status;
+                    console.log(error);
+                });
+			}
 
         },
         components: {
