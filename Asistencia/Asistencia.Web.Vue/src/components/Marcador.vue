@@ -261,6 +261,9 @@
 <script>
 	import moment from 'moment';
 	import axios from 'axios';
+	import constants from '@/utility/constants';
+	import functions from '@/utility/functions';
+	import base from '@/utility/base-public';
 	import { required, minLength, between } from 'vuelidate/lib/validators';
 
     export default {
@@ -342,7 +345,8 @@
 						this.clearMarcador();
 					}
 				}
-	        },
+			},
+			
 	        LlenarDatosTrabajadorMarcado: function () {
 
 	            var currentDate = new Date();
@@ -387,19 +391,15 @@
 	            _this.objMarcador.nom2SubArea = '';
 			},
 
-			
 			ObtenerEmpleado(itemEmpleado){
-				axios.get('http://localhost:8091/api/Empleado/SelectEmpleado/' + itemEmpleado)
-                .then((respuesta) => {
-                    _this.objEmpleado = respuesta.data.value.empleado;
-                },
-                {
-                    headers: { "Access-Control-Allow-Origin": "*" }
-                })
-                .catch(error => {
-                    //error.response.status;
-                    console.log(error);
-                });
+
+				let _this = this;
+
+            	var url = functions.getUrlApiAsistencia('api/Empleado/SelectEmpleado/'+ itemEmpleado);
+
+            	base.sendGet(url).then(function (data) {
+                	_this.objEmpleado = respuesta.data.value.empleado;
+            	});
 			}
 
         },
