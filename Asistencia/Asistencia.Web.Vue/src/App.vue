@@ -1,12 +1,13 @@
 <template>
     <div id="app">
-        <Home msg="Logo Manoooooo!" />
-        <geolocation>
+
+        <marcador>
             
-        </geolocation>
-        <router-view>
+        </marcador>
+
+        <!-- <router-view>
       
-        </router-view>
+        </router-view> -->
 
     </div>
 </template>
@@ -14,12 +15,14 @@
 <script>
     import Home from './components/Home.vue';
     import Geolocation from './components/Geolocation.vue';
+    import Marcador from './components/Marcador.vue';
 
     export default {
         name: 'app',
         components: {
             Home,
-            Geolocation
+            Geolocation,
+            Marcador
         }
     };
 </script>

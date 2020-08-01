@@ -8,6 +8,7 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 
 import VueRouter from 'vue-router';
 import Marcador from './components/Marcador.vue';
+import Geolocation from './components/Geolocation.vue';
 // Install Bootstrap
 Vue.use(BootstrapVue);
 // Optionally install the BootstrapVue icon components plugin
@@ -28,8 +29,20 @@ Vue.directive('focus', {
     }
   })
 
+  // Vue.prototype.$appName = 'Mi aplicación'
+  
+  // Vue.mixin({
+  //     data: function() {
+  //         return {
+  //             flagLocation:false
+  //         }
+  //     }
+  // })
+
+
 const routes = [
     {path:'/marcador', component:Marcador},
+    {path:'/geolocation', component:Geolocation},
     {path:'/', component:App},
 ]
 
