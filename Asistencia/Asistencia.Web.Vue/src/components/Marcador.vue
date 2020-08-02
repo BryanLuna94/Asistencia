@@ -270,6 +270,9 @@
 <script>
 	import moment from 'moment';
 	import axios from 'axios';
+	import constants from '@/utility/constants';
+	import functions from '@/utility/functions';
+	import base from '@/utility/base-public';
 	import { required, minLength, between } from 'vuelidate/lib/validators';
 	
 	
@@ -355,7 +358,8 @@
 						this.clearMarcador();
 					}
 				}
-	        },
+			},
+			
 	        LlenarDatosTrabajadorMarcado: function () {
 
 	            var currentDate = new Date();
