@@ -99,7 +99,7 @@ var base = {
     },
 
     sendGet: async function (pUrl) {
-
+       
         var token = functions.getUserData().token;
 
         return await axios.get(pUrl, {

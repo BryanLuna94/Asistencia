@@ -2,7 +2,7 @@ var constants = {
 
     configApiAsistencia: {
 
-        URL_BASE: 'https://localhost:44368/',
+        URL_BASE: 'https://localhost:44343/',
         TIME_EXPIRE_TOKEN: '144000'
 
     },
@@ -39,6 +39,12 @@ var constants = {
         USER_INSERT: 'api/User/InsertUser',
         USER_UPDATE: 'api/User/UpdateUser/{0}',
         USER_DISABLE: 'api/User/DisableUser/{0}',
+
+        EMPLOYEE_INSERT: 'api/Empleado/InsertEmpleado',
+        EMPLOYEE_UPDATE: 'api/Empleado/UpdateEmpleado/',
+        EMPLOYEE_DISABLE: 'api/Empleado/DisableEmpleado/',
+        EMPLOYEE_LIST: 'api/Empleado/ListEmpleado',
+        EMPLOYEE_SELECT: 'api/Empleado/SelectEmpleado/',
 
         COMPANY_INSERT: 'api/Company/InsertCompany',
         COMPANY_UPDATE: 'api/Company/UpdateCompany/{0}',

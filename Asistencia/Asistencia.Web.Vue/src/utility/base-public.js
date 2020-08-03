@@ -100,7 +100,7 @@ var base = {
     },
 
     sendGet: async function (pUrl) {
-
+        debugger;
         return await axios.get(pUrl, {
             headers: {
                 'Content-Type': 'application/json'

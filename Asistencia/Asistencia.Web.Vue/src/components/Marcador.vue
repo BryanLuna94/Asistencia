@@ -264,8 +264,10 @@
 				</div>
 			</div>
 		</div>
+		
     </div>
 </template>
+
 
 <script>
 	import moment from 'moment';
@@ -273,8 +275,8 @@
 	import constants from '@/utility/constants';
 	import functions from '@/utility/functions';
 	import base from '@/utility/base-public';
-	import { required, minLength, between } from 'vuelidate/lib/validators';
 	
+	import { required, minLength, between } from 'vuelidate/lib/validators';
 	
 
     export default {
@@ -352,7 +354,7 @@
 					
 					if (e.keyCode === 13) {
 						
-						this.ObtenerEmpleado(this.objFilter.codigoAsistencia);
+						_this.ObtenerEmpleado(this.objFilter.codigoAsistencia);
 
 					} else {
 						this.clearMarcador();
@@ -404,7 +406,6 @@
 			},
 
 			obtenerGeolocation(){
-				debugger;
 
 				let _this = this;
 				// no soporta geolocalizacion
@@ -428,34 +429,24 @@
 				})
 			},
 			
-			ObtenerEmpleado(itemEmpleado){
-				debugger;
-				
+			ObtenerEmpleado: async function(itemEmpleado){
+		
 				let _this = this;
-				_this.mensaje = '';
-				axios.get('https://localhost:44343/api/Empleado/SelectEmpleado/' + itemEmpleado)
-                .then((respuesta) => {
-					if (respuesta.data.status == 200) {
-						_this.objEmpleado.codigo= respuesta.data.value.empleado.emp_codigo;
-						_this.objEmpleado.tipo= respuesta.data.value.empleado.emp_tipo;
-						_this.objEmpleado.nombre= respuesta.data.value.empleado.emp_nombre;
-						_this.objEmpleado.codigoSucursal= respuesta.data.value.empleado.suc_codigo;
-						_this.objEmpleado.nombreSucursal= respuesta.data.value.empleado.suc_nombre;
-						_this.objEmpleado.codigoArea= respuesta.data.value.empleado.are_codigo;
-						_this.objEmpleado.nombreArea= respuesta.data.value.empleado.are_descripcion;
-						_this.objEmpleado.codigoSubArea= respuesta.data.value.empleado.aresub_codigo;
-						_this.objEmpleado.nombreSubArea= respuesta.data.value.empleado.aresub_descripcion;
-					}else{
-						_this.mensaje = 'NO ENCONTRADO';
-					}
+				
+				var url = functions.getUrlApiAsistencia(constants.configUrlApiAsistencia.EMPLOYEE_SELECT + itemEmpleado);
 
+				await base.sendGet(url).then(function (data){
+					_this.objEmpleado.codigo= data.data.value.empleado.emp_codigo;
+					_this.objEmpleado.tipo= data.data.value.empleado.emp_tipo;
+					_this.objEmpleado.nombre= data.data.value.empleado.emp_nombre;
+					_this.objEmpleado.codigoSucursal= data.data.value.empleado.suc_codigo;
+					_this.objEmpleado.nombreSucursal= data.data.value.empleado.suc_nombre;
+					_this.objEmpleado.codigoArea= data.data.value.empleado.are_codigo;
+					_this.objEmpleado.nombreArea= data.data.value.empleado.are_descripcion;
+					_this.objEmpleado.codigoSubArea= data.data.value.empleado.aresub_codigo;
+					_this.objEmpleado.nombreSubArea= data.data.value.empleado.aresub_descripcion;
+				})
 
-                })
-                .catch(error => {
-                    //error.response.status;
-					console.log(error);
-					_this.mensaje = 'ERROR';
-                });
 			}
 
         },
