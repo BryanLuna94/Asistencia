@@ -9,6 +9,7 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 import VueRouter from 'vue-router';
 import Marcador from './components/Marcador.vue';
 import Geolocation from './components/Geolocation.vue';
+import Login from './components/Login.vue';
 // Install Bootstrap
 Vue.use(BootstrapVue);
 // Optionally install the BootstrapVue icon components plugin
@@ -43,6 +44,7 @@ Vue.directive('focus', {
 const routes = [
     {path:'/marcador', component:Marcador},
     {path:'/geolocation', component:Geolocation},
+    {path:'/login', component:Login},
     {path:'/', component:App},
 ]
 

@@ -1,13 +1,10 @@
 <template>
     <div id="app">
 
-        <marcador>
-            
-        </marcador>
 
-        <!-- <router-view>
+        <router-view>
       
-        </router-view> -->
+        </router-view>
 
     </div>
 </template>

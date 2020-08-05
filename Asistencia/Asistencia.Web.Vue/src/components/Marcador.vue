@@ -466,7 +466,7 @@
     };
 </script>
 
-<style type="text/css">
+<style type="text/css" scoped>
 .form-group--error {
   animation-name: shakeError;
   animation-fill-mode: forwards;
