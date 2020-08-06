@@ -5,8 +5,9 @@ import Vuelidate from 'vuelidate';
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue';
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
-
 import VueRouter from 'vue-router';
+import VueSweetalert2 from 'vue-sweetalert2';
+
 import Marcador from './components/Marcador.vue';
 import Geolocation from './components/Geolocation.vue';
 import Login from './components/Login.vue';
@@ -18,6 +19,8 @@ Vue.use(IconsPlugin)
 Vue.use(VueRouter);
 // Install Vuelidate
 Vue.use(Vuelidate);
+// Install VueSweetalert2
+Vue.use(VueSweetalert2);
 
 Vue.config.productionTip = true;
 

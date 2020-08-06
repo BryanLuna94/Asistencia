@@ -1,6 +1,6 @@
 <template>
 	
-    <div class="col-sm-12">
+    <div class="col-sm-12 container-login100">
 		<div class="col-sm-12">
             <div v-if="gettingLocation">
                 <i>Obteniendo su ubicación...</i>
@@ -126,8 +126,8 @@
 														</div>
 													</div>
 													<hr />
-													<label>DATOS DEL MARCADO</label>
-
+											
+													<!-- 
 													<div class="row">
 														<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" style="padding-left:1px; padding-right:2px;">
 															<label class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="padding-left: 50px; vertical-align: central;">
@@ -238,7 +238,7 @@
 														<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6" style="padding-left:1px; padding-right:2px; padding-bottom:2px;">
 															<input class="col-xs-12 col-sm-12 col-md-12 col-lg-12" disabled v-model="objMarcador.nom2SubArea" />
 														</div>
-													</div>
+													</div> -->
 												</div>
 											</div>
 										</form>
@@ -247,12 +247,13 @@
 								<div class="panel-footer">
 									<div class="form-group m-b-0">
 										<div class="row">
-											<div class="col text-center col-sm-6">
+											<div class="col text-center col-sm-12">
 												<button class="btn btn-success btn-block" v-on:click.prevent="LlenarDatosTrabajadorMarcado()">Marcar</button>
+												<!-- <button class="btn btn-success btn-block" v-on:click="alertDisplay">Marcar</button> -->
 											</div>
-											<div class="col text-center col-sm-6">
+											<!-- <div class="col text-center col-sm-6">
 												<button class="btn btn-danger btn-block" v-on:click.prevent="clearMarcador()">Nuevo</button>
-											</div>
+											</div> -->
 
 								
 										</div>
@@ -376,7 +377,15 @@
 	            this.objMarcador.cod2SubArea = '01';
 	            this.objMarcador.nom2SubArea = 'ADMINISTRACION';
 
-	        },
+				this.alertMarcacionCorrecta();
+				// this.alertMarcacionError();
+			},
+			
+			ObtenerFechaHoraMarcador: function (){
+	            var currentDate = new Date();
+	            this.objMarcador.fIngresoUno = moment(currentDate, 'YYYY-MM-DD hh:mm:ss').format('DD-MM-YYYY');
+	            this.objMarcador.hIngresoUno = moment(currentDate, 'YYYY-MM-DD hh:mm:ss').format('hh:mm a');
+			},
 
 	        clearMarcador() {
 
@@ -447,6 +456,30 @@
 					_this.objEmpleado.nombreSubArea= data.data.value.empleado.aresub_descripcion;
 				})
 
+			},
+			alertMarcacionCorrecta() {
+				this.$swal({
+					position: 'top',
+					icon: 'success',
+					title: 'Marcación Correcta',
+					showConfirmButton: false,
+					timer: 1500,
+					html:
+						'Fecha: <b>' + this.objMarcador.fIngresoUno + '</b>  ' +
+						'Hora: <b>' + this.objMarcador.hIngresoUno + '</b> '
+				}).then((result)=>{
+					this.clearMarcador();
+				});
+			},
+			alertMarcacionError() {
+				this.$swal({
+					position: 'center-center',
+					icon: 'error',
+					title: 'Ocurrió un error',
+					showConfirmButton: false,
+					timer: 1500
+					
+				});
 			}
 
         },
