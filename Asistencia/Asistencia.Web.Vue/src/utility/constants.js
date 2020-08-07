@@ -3,6 +3,7 @@ var constants = {
     configApiAsistencia: {
 
         URL_BASE: 'https://localhost:44343/',
+        // URL_BASE: 'https://apimarcador.somee.com/',
         TIME_EXPIRE_TOKEN: '144000'
 
     },
@@ -45,6 +46,12 @@ var constants = {
         EMPLOYEE_DISABLE: 'api/Empleado/DisableEmpleado/',
         EMPLOYEE_LIST: 'api/Empleado/ListEmpleado',
         EMPLOYEE_SELECT: 'api/Empleado/SelectEmpleado/',
+
+        MARCADOR_INSERT: 'api/Marcador/InsertMarcador',
+        MARCADOR_UPDATE: 'api/Marcador/UpdateMarcador/',
+        MARCADOR_DISABLE: 'api/Marcador/DisableMarcador/',
+        MARCADOR_LIST: 'api/Marcador/ListMarcador',
+        MARCADOR_SELECT: 'api/Marcador/SelectMarcador/',
 
         COMPANY_INSERT: 'api/Company/InsertCompany',
         COMPANY_UPDATE: 'api/Company/UpdateCompany/{0}',

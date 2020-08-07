@@ -29,19 +29,19 @@ var base = {
     },
 
     sendPost: async function (pUrl, pJson, showMessageSuccess) {
-
+        debugger;
         if (showMessageSuccess === undefined) showMessageSuccess = false;
-        var token = Functions.getUserData().token;
         return await axios.post(pUrl, pJson, {
             headers: {
-                'Authorization': 'Bearer ' + token,
                 'Content-Type': 'application/json'
             }
         })
             .then(res => {
+                debugger;
                 if (res.data.isCorrect) {
+                    
                     if (showMessageSuccess) {
-                        Notifications.Messages.info('Se actualizó la información exitosamente');
+                        // Notifications.Messages.info('Se insertó la información exitosamente');
                     }
                     return res;
                 } else {
@@ -100,7 +100,7 @@ var base = {
     },
 
     sendGet: async function (pUrl) {
-        debugger;
+        
         return await axios.get(pUrl, {
             headers: {
                 'Content-Type': 'application/json'
