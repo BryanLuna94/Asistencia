@@ -80,13 +80,13 @@
 															</label>
 														</div>
 														<div class="col-xs-1 col-sm-1 col-md-1 col-lg-1" style="padding-left:1px; padding-right:2px; padding-bottom:2px;">
-															<input class="col-xs-12 col-sm-12 col-md-12 col-lg-12" disabled v-model="objEmpleado.codigo" />
+															<input class="col-xs-12 col-sm-12 col-md-12 col-lg-12" disabled v-model="objEmpleado.emp_codigo" />
 														</div>
 														<div class="col-xs-1 col-sm-1 col-md-1 col-lg-1" style="padding-left:1px; padding-right:2px; padding-bottom:2px;">
-															<input class="col-xs-12 col-sm-12 col-md-12 col-lg-12" disabled v-model="objEmpleado.tipo" />
+															<input class="col-xs-12 col-sm-12 col-md-12 col-lg-12" disabled v-model="objEmpleado.emp_tipo" />
 														</div>
 														<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" style="padding-left:1px; padding-right:2px; padding-bottom:2px;">
-															<input class="col-xs-12 col-sm-12 col-md-12 col-lg-12" disabled v-model="objEmpleado.nombre" />
+															<input class="col-xs-12 col-sm-12 col-md-12 col-lg-12" disabled v-model="objEmpleado.emp_nombre" />
 														</div>
 
 														<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2" style="padding-left:1px; padding-right:2px;">
@@ -95,10 +95,10 @@
 															</label>
 														</div>
 														<div class="col-xs-1 col-sm-1 col-md-1 col-lg-1" style="padding-left:1px; padding-right:2px; padding-bottom:2px;">
-															<input class="col-xs-12 col-sm-12 col-md-12 col-lg-12" disabled v-model="objEmpleado.codigoArea" />
+															<input class="col-xs-12 col-sm-12 col-md-12 col-lg-12" disabled v-model="objEmpleado.are_codigo" />
 														</div>
 														<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2" style="padding-left:1px; padding-right:2px; padding-bottom:2px;">
-															<input class="col-xs-12 col-sm-12 col-md-12 col-lg-12" disabled v-model="objEmpleado.nombreArea" />
+															<input class="col-xs-12 col-sm-12 col-md-12 col-lg-12" disabled v-model="objEmpleado.are_descripcion" />
 														</div>
 													</div>
 													<div class="row">
@@ -108,10 +108,10 @@
 															</label>
 														</div>
 														<div class="col-xs-1 col-sm-1 col-md-1 col-lg-1" style="padding-left:1px; padding-right:2px; padding-bottom:2px;">
-															<input class="col-xs-12 col-sm-12 col-md-12 col-lg-12" disabled v-model="objEmpleado.codigoSucursal" />
+															<input class="col-xs-12 col-sm-12 col-md-12 col-lg-12" disabled v-model="objEmpleado.suc_codigo" />
 														</div>
 														<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4" style="padding-left:1px; padding-right:2px; padding-bottom:2px;">
-															<input class="col-xs-12 col-sm-12 col-md-12 col-lg-12" disabled v-model="objEmpleado.nombreSucursal" />
+															<input class="col-xs-12 col-sm-12 col-md-12 col-lg-12" disabled v-model="objEmpleado.suc_nombre" />
 														</div>
 														<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2" style="padding-left:1px; padding-right:2px;">
 															<label class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="vertical-align: central;">
@@ -119,126 +119,14 @@
 															</label>
 														</div>
 														<div class="col-xs-1 col-sm-1 col-md-1 col-lg-1" style="padding-left:1px; padding-right:2px; padding-bottom:2px;">
-															<input class="col-xs-12 col-sm-12 col-md-12 col-lg-12" disabled v-model="objEmpleado.codigoSubArea" />
+															<input class="col-xs-12 col-sm-12 col-md-12 col-lg-12" disabled v-model="objEmpleado.aresub_codigo" />
 														</div>
 														<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2" style="padding-left:1px; padding-right:2px; padding-bottom:2px;">
-															<input class="col-xs-12 col-sm-12 col-md-12 col-lg-12" disabled v-model="objEmpleado.nombreSubArea" />
+															<input class="col-xs-12 col-sm-12 col-md-12 col-lg-12" disabled v-model="objEmpleado.aresub_descripcion" />
 														</div>
 													</div>
 													<hr />
 											
-													<!-- 
-													<div class="row">
-														<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" style="padding-left:1px; padding-right:2px;">
-															<label class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="padding-left: 50px; vertical-align: central;">
-																F. INGRESO 1
-															</label>
-														</div>
-														<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" style="padding-left:1px; padding-right:2px; padding-bottom:2px;">
-															<input class="col-xs-12 col-sm-12 col-md-12 col-lg-12" disabled v-model="objMarcador.fIngresoUno" />
-														</div>
-														<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" style="padding-left:1px; padding-right:2px;">
-															<label class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="padding-left: 50px; vertical-align: central;">
-																F. INGRESO 2
-															</label>
-														</div>
-														<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" style="padding-left:1px; padding-right:2px; padding-bottom:2px;">
-															<input class="col-xs-12 col-sm-12 col-md-12 col-lg-12" disabled />
-														</div>
-													</div>
-													<div class="row">
-														<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" style="padding-left:1px; padding-right:2px;">
-															<label class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="padding-left: 50px; vertical-align: central;">
-																H. INGRESO 1
-															</label>
-														</div>
-														<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" style="padding-left:1px; padding-right:2px; padding-bottom:2px;">
-															<input class="col-xs-12 col-sm-12 col-md-12 col-lg-12" disabled v-model="objMarcador.hIngresoUno" />
-														</div>
-														<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" style="padding-left:1px; padding-right:2px;">
-															<label class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="padding-left: 50px; vertical-align: central;">
-																H. INGRESO 2
-															</label>
-														</div>
-														<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" style="padding-left:1px; padding-right:2px; padding-bottom:2px;">
-															<input class="col-xs-12 col-sm-12 col-md-12 col-lg-12" disabled />
-														</div>
-													</div>
-													<div class="row">
-														<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" style="padding-left:1px; padding-right:2px;">
-															<label class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="padding-left: 50px; vertical-align: central;">
-																F. SALIDA 1
-															</label>
-														</div>
-														<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" style="padding-left:1px; padding-right:2px; padding-bottom:2px;">
-															<input class="col-xs-12 col-sm-12 col-md-12 col-lg-12" disabled />
-														</div>
-														<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" style="padding-left:1px; padding-right:2px;">
-															<label class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="padding-left: 50px; vertical-align: central;">
-																F. SALIDA 2
-															</label>
-														</div>
-														<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" style="padding-left:1px; padding-right:2px; padding-bottom:2px;">
-															<input class="col-xs-12 col-sm-12 col-md-12 col-lg-12" disabled />
-														</div>
-													</div>
-													<div class="row">
-														<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" style="padding-left:1px; padding-right:2px;">
-															<label class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="padding-left: 50px; vertical-align: central;">
-																H. SALIDA 1
-															</label>
-														</div>
-														<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" style="padding-left:1px; padding-right:2px; padding-bottom:2px;">
-															<input class="col-xs-12 col-sm-12 col-md-12 col-lg-12" disabled />
-														</div>
-														<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" style="padding-left:1px; padding-right:2px;">
-															<label class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="padding-left: 50px; vertical-align: central;">
-																H. SALIDA 2
-															</label>
-														</div>
-														<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" style="padding-left:1px; padding-right:2px; padding-bottom:2px;">
-															<input class="col-xs-12 col-sm-12 col-md-12 col-lg-12" disabled />
-														</div>
-													</div>
-													<div class="row">
-														<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" style="padding-left:1px; padding-right:2px;">
-															<label class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="padding-left: 50px; vertical-align: central;">
-																SUCURSAL:
-															</label>
-														</div>
-														<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" style="padding-left:1px; padding-right:2px; padding-bottom:2px;">
-															<input class="col-xs-12 col-sm-12 col-md-12 col-lg-12" disabled v-model="objMarcador.cod2Sucursal" />
-														</div>
-														<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6" style="padding-left:1px; padding-right:2px; padding-bottom:2px;">
-															<input class="col-xs-12 col-sm-12 col-md-12 col-lg-12" disabled v-model="objMarcador.nom2Sucursal" />
-														</div>
-													</div>
-													<div class="row">
-														<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" style="padding-left:1px; padding-right:2px;">
-															<label class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="padding-left: 50px; vertical-align: central;">
-																AREA:
-															</label>
-														</div>
-														<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" style="padding-left:1px; padding-right:2px; padding-bottom:2px;">
-															<input class="col-xs-12 col-sm-12 col-md-12 col-lg-12" disabled v-model="objMarcador.cod2Area" />
-														</div>
-														<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6" style="padding-left:1px; padding-right:2px; padding-bottom:2px;">
-															<input class="col-xs-12 col-sm-12 col-md-12 col-lg-12" disabled v-model="objMarcador.nom2Area" />
-														</div>
-													</div>
-													<div class="row">
-														<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" style="padding-left:1px; padding-right:2px;">
-															<label class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="padding-left: 50px; vertical-align: central;">
-																SUB AREA:
-															</label>
-														</div>
-														<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" style="padding-left:1px; padding-right:2px; padding-bottom:2px;">
-															<input class="col-xs-12 col-sm-12 col-md-12 col-lg-12" disabled v-model="objMarcador.cod2SubArea" />
-														</div>
-														<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6" style="padding-left:1px; padding-right:2px; padding-bottom:2px;">
-															<input class="col-xs-12 col-sm-12 col-md-12 col-lg-12" disabled v-model="objMarcador.nom2SubArea" />
-														</div>
-													</div> -->
 												</div>
 											</div>
 										</form>
@@ -249,13 +137,7 @@
 										<div class="row">
 											<div class="col text-center col-sm-12">
 												<button class="btn btn-success btn-lg btn-block" v-on:click.prevent="LlenarDatosTrabajadorMarcado()">Marcar</button>
-												<!-- <button class="btn btn-success btn-block" v-on:click="alertDisplay">Marcar</button> -->
-											</div>
-											<!-- <div class="col text-center col-sm-6">
-												<button class="btn btn-danger btn-block" v-on:click.prevent="clearMarcador()">Nuevo</button>
-											</div> -->
-
-								
+											</div>							
 										</div>
 									</div>
 								</div>
@@ -304,6 +186,16 @@
                 errorStr:null,
 
 				objEmpleado: {
+					emp_codigo: '',
+					emp_tipo: '',
+					emp_nombre:'',
+					suc_codigo:'',
+					suc_nombre:'',
+					are_codigo:'',
+					are_descripcion:'',
+					aresub_codigo:'',
+					aresub_descripcion:'',
+
 		            codigo: '',
 		            tipo: '',
 					nombre: '',
@@ -322,10 +214,7 @@
 					id: 0,
 					emp_codigo: '',
 					tur_codigo: '',
-					fecha_hora_actual:'',
-					fecha_hora_inicial:'',
-					fecha_hora_final:'',
-					fecha_hora_final_manual:'',
+					fecha_hora_marcador:'',
 					longitud:0,
 					latitud:0,
 		        },
@@ -367,18 +256,13 @@
 
 	            var currentDate = new Date();
 				currentDate.toLocaleString('en-US', { timeZone: 'America/New_York' })
-	            // this.objMarcador.fIngresoUno = moment(currentDate, 'YYYY-MM-DD hh:mm:ss').format('DD-MM-YYYY');
-	            // this.objMarcador.hIngresoUno = moment(currentDate, 'YYYY-MM-DD hh:mm:ss').format('hh:mm a');
 
 				this.objMarcador.id = 0;
-				this.objMarcador.emp_codigo = 'X0164';
+				this.objMarcador.emp_codigo = this.objEmpleado.emp_codigo;
 				this.objMarcador.tur_codigo = 'T01';
-				this.objMarcador.fecha_hora_actual = moment(currentDate).format("YYYY-MM-DDTHH:mm:ss"); //moment(currentDate, 'YYYY-MM-DD hh:mm:ss').format('YYYY-MM-DD hh:mm:ss');
-				this.objMarcador.fecha_hora_inicial = moment(currentDate).format("YYYY-MM-DDTHH:mm:ss");
-				this.objMarcador.fecha_hora_final = '2020-10-08T10:45:43.511Z';
-				this.objMarcador.fecha_hora_final_manual = '2020-11-09T10:45:43.511Z';
-				this.objMarcador.longitud = this.location.coords.longitude;// -12.046373;
-				this.objMarcador.latitud = this.location.coords.latitude; //-77.042755;
+				this.objMarcador.fecha_hora_marcador = moment(currentDate).format("YYYY-MM-DDTHH:mm:ss"); 
+				this.objMarcador.longitud = this.location.coords.longitude; 
+				this.objMarcador.latitud = this.location.coords.latitude; 
 				
 				debugger;
 				this.GuardarMarcador(this.objMarcador);
@@ -446,15 +330,15 @@
 				let _this = this;
 				var url = functions.getUrlApiAsistencia(constants.configUrlApiAsistencia.EMPLOYEE_SELECT + itemEmpleado);
 				await base.sendGet(url).then(function (data){
-					_this.objEmpleado.codigo= data.data.value.empleado.emp_codigo;
-					_this.objEmpleado.tipo= data.data.value.empleado.emp_tipo;
-					_this.objEmpleado.nombre= data.data.value.empleado.emp_nombre;
-					_this.objEmpleado.codigoSucursal= data.data.value.empleado.suc_codigo;
-					_this.objEmpleado.nombreSucursal= data.data.value.empleado.suc_nombre;
-					_this.objEmpleado.codigoArea= data.data.value.empleado.are_codigo;
-					_this.objEmpleado.nombreArea= data.data.value.empleado.are_descripcion;
-					_this.objEmpleado.codigoSubArea= data.data.value.empleado.aresub_codigo;
-					_this.objEmpleado.nombreSubArea= data.data.value.empleado.aresub_descripcion;
+					_this.objEmpleado.emp_codigo= data.data.value.empleado.emp_codigo;
+					_this.objEmpleado.emp_tipo= data.data.value.empleado.emp_tipo;
+					_this.objEmpleado.emp_nombre= data.data.value.empleado.emp_nombre;
+					_this.objEmpleado.suc_codigo= data.data.value.empleado.suc_codigo;
+					_this.objEmpleado.suc_nombre= data.data.value.empleado.suc_nombre;
+					_this.objEmpleado.are_codigo= data.data.value.empleado.are_codigo;
+					_this.objEmpleado.are_descripcion= data.data.value.empleado.are_descripcion;
+					_this.objEmpleado.aresub_codigo= data.data.value.empleado.aresub_codigo;
+					_this.objEmpleado.aresub_descripcion= data.data.value.empleado.aresub_descripcion;
 				})
 
 			},
@@ -466,8 +350,8 @@
 					showConfirmButton: false,
 					timer: 1500,
 					html:
-						'Fecha: <b>' + moment(item.fecha_hora_actual, 'YYYY-MM-DD hh:mm:ss').format('DD-MM-YYYY') + '</b>  ' +
-						'Hora: <b>' + moment(item.fecha_hora_actual, 'YYYY-MM-DD hh:mm:ss').format('hh:mm a') + '</b> '
+						'Fecha: <b>' + moment(item.fecha_hora_marcador, 'YYYY-MM-DD hh:mm:ss').format('DD-MM-YYYY') + '</b>  ' +
+						'Hora: <b>' + moment(item.fecha_hora_marcador, 'YYYY-MM-DD hh:mm:ss').format('hh:mm a') + '</b> '
 				}).then((result)=>{
 					this.clearMarcador();
 				});
@@ -482,18 +366,18 @@
 					
 				});
 			},
-			GuardarMarcador: async function(entity){
+			GuardarMarcador: async function(item){
 				debugger;
 				let _this = this;
 				let data = {
-					marcador: entity
+					marcador: item
 				};
 
 				var url = functions.getUrlApiAsistencia(constants.configUrlApiAsistencia.MARCADOR_INSERT);
 				await base.sendPost(url, JSON.stringify(data), true).then(function (data){
 					if(data !== undefined){
 						debugger;
-						_this.alertMarcacionCorrecta(entity);
+						_this.alertMarcacionCorrecta(item);
 					}else{
 						_this.alertMarcacionError();
 					}
