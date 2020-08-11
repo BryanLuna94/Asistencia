@@ -1,70 +1,55 @@
-﻿using Asistencia.BusinessLayer;
+﻿using System.Threading.Tasks;
+using Asistencia.BusinessLayer;
+using Asistencia.DataTypes.Petitions.Requests;
 using Asistencia.WebApi.Utility;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 
 namespace Asistencia.WebApi.Controllers
 {
-    [AllowAnonymous]
-    public class EmpleadoController : Controller
+    public class MarcadorController : Controller
     {
-        private readonly EmpleadoLogic _empleadoLogic;
+        private readonly MarcadorLogic _marcadorLogic;
 
-        public EmpleadoController(IConfiguration configuration)
+        public MarcadorController(IConfiguration configuration)
         {
-            _empleadoLogic = new EmpleadoLogic(configuration);
+            _marcadorLogic = new MarcadorLogic(configuration);
         }
 
-        [HttpGet(Constants.RoutesApi.EMPLEADO_SELECT)]
-        [Attributes.Excepcion]
-        public IActionResult Select(string pId)
-        {
-            var response = _empleadoLogic.ObtenerEmpleado(pId);
-            return Ok(response);
-        }
-
-        // GET: EmpleadoController
+        // GET: MarcadorController
         public ActionResult Index()
         {
             return View();
         }
 
-        // GET: EmpleadoController/Details/5
+        // GET: MarcadorController/Details/5
         public ActionResult Details(int id)
         {
             return View();
         }
 
-        // GET: EmpleadoController/Create
+        // GET: MarcadorController/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: EmpleadoController/Create
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        [HttpPost(Constants.RoutesApi.MARCADOR_INSERT)]
+        [Attributes.Excepcion]
+        public async Task<ActionResult> InsertUser([FromBody] MarcadorRequest request)
         {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            var response = await _marcadorLogic.Insert(request);
+            return Ok(response);
         }
 
-        // GET: EmpleadoController/Edit/5
+        // GET: MarcadorController/Edit/5
         public ActionResult Edit(int id)
         {
             return View();
         }
 
-        // POST: EmpleadoController/Edit/5
+        // POST: MarcadorController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, IFormCollection collection)
@@ -79,13 +64,13 @@ namespace Asistencia.WebApi.Controllers
             }
         }
 
-        // GET: EmpleadoController/Delete/5
+        // GET: MarcadorController/Delete/5
         public ActionResult Delete(int id)
         {
             return View();
         }
 
-        // POST: EmpleadoController/Delete/5
+        // POST: MarcadorController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Delete(int id, IFormCollection collection)
