@@ -1,6 +1,7 @@
 import axios from 'axios';
 import functions from '@/utility/functions';
 
+
 var base = {
 
     sendAutocomplete: async function (pUrl, pValue) {
@@ -117,6 +118,7 @@ var base = {
             });
     },
     
+
 
 }
 

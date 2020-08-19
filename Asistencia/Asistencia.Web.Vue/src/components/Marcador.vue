@@ -53,7 +53,7 @@
 															<div class="form-group" :class="{ 'form-group--error': $v.codigo.$error }">
 																<label>COD. DE ASISTENCIA</label>
 																<div class="m-b-30">
-																	<input v-focus class="form-control" type="password"  v-model.trim="codigo" @input="setCodigo($event.target.value)" v-on:keyup="LlenarDatosTrabajador" />
+																	<input v-focus class="form-control" type="password"  v-model.trim="codigo" @input="setCodigo($event.target.value)" v-on:keyup.enter="LlenarDatosEmpleado" v-on:keyup.delete="LimpiarDatosEmpleado" />
 																</div>
 															</div>
 															<div class="error" v-if="!$v.codigo.required">El campo es requerido.</div>
@@ -136,7 +136,7 @@
 									<div class="form-group m-b-0">
 										<div class="row">
 											<div class="col text-center col-sm-12">
-												<button class="btn btn-success btn-lg btn-block" v-on:click.prevent="LlenarDatosTrabajadorMarcado()">Marcar</button>
+												<button class="btn btn-success btn-lg btn-block" v-on:click.prevent="GuardarMarcadorEmpleado()" :disabled="isDisabled">Marcar</button>
 											</div>							
 										</div>
 									</div>
@@ -197,15 +197,8 @@
 					aresub_descripcion:'',
 
 		            codigo: '',
-		            tipo: '',
-					nombre: '',
-		            codigoSucursal: '',
-		            nombreSucursal: '',
-		            codigoArea: '',
-		            nombreArea: '',
-		            codigoSubArea: '',
-					nombreSubArea: '',
-					flagUbicacion: false
+					flagUbicacion: false,
+					flagHabilitarMarcado:false,
 				},
 				objFilter :{
 					codigoAsistencia: 0,
@@ -236,23 +229,13 @@
 	            this.fechaHoy = moment(currentDate, 'YYYY-MM-DD hh:mm:ss').format('DD-MM-YYYY');
 
 	        },
-	        LlenarDatosTrabajador: function (e) {
+	        LlenarDatosEmpleado: function (e) {
 				debugger;
 				let _this = this;
-				if (this.$v.$invalid) {
-				}else {
-					
-					if (e.keyCode === 13) {
-						
-						_this.ObtenerEmpleado(this.objFilter.codigoAsistencia);
-
-					} else {
-						this.clearMarcador();
-					}
-				}
+				_this.ObtenerEmpleado(this.objFilter.codigoAsistencia);
 			},
 			
-	        LlenarDatosTrabajadorMarcado: function () {
+	        GuardarMarcadorEmpleado: function () {
 
 	            var currentDate = new Date();
 				currentDate.toLocaleString('en-US', { timeZone: 'America/New_York' })
@@ -274,31 +257,22 @@
 	            this.objMarcador.hIngresoUno = moment(currentDate, 'YYYY-MM-DD hh:mm:ss').format('hh:mm a');
 			},
 
-	        clearMarcador() {
-
+	        LimpiarDatosEmpleado() {
 	            let _this = this;
-
-	            
-				_this.objEmpleado.codigo= '';
-				_this.objEmpleado.tipo= '';
-				_this.objEmpleado.nombre= '';
-				_this.objEmpleado.codigoSucursal= '';
-				_this.objEmpleado.nombreSucursal= '';
-				_this.objEmpleado.codigoArea= '';
-				_this.objEmpleado.nombreArea= '';
-				_this.objEmpleado.codigoSubArea= '';
-				_this.objEmpleado.nombreSubArea= '';
+				_this.objEmpleado.emp_codigo= '';
+				_this.objEmpleado.emp_tipo= '';
+				_this.objEmpleado.emp_nombre= '';
+				_this.objEmpleado.suc_codigo= '';
+				_this.objEmpleado.suc_nombre= '';
+				_this.objEmpleado.are_codigo= '';
+				_this.objEmpleado.are_descripcion= '';
+				_this.objEmpleado.aresub_codigo= '';
+				_this.objEmpleado.aresub_descripcion= '';
 
 				_this.mensaje = '';
+				_this.codigo = '';
+				_this.objEmpleado.flagHabilitarMarcado = false;
 
-	            _this.objMarcador.fIngresoUno = '';
-	            _this.objMarcador.hIngresoUno = '';
-	            _this.objMarcador.cod2Sucursal = '';
-	            _this.objMarcador.nom2Sucursal = '';
-	            _this.objMarcador.cod2Area = '';
-	            _this.objMarcador.nom2Area = '';
-	            _this.objMarcador.cod2SubArea = '';
-	            _this.objMarcador.nom2SubArea = '';
 			},
 
 			obtenerGeolocation(){
@@ -307,20 +281,20 @@
 				// no soporta geolocalizacion
 				if (!("geolocation" in navigator)) {
 					this.errorStr = 'Geolocation is not available.';
-					_this.objEmpleado.flagUbicacion = false;
+					
 					return;
 				}
 
 				this.gettingLocation = true;
-				_this.objEmpleado.flagUbicacion = true;
+				
 				//get position
 				navigator.geolocation.getCurrentPosition(pos=>{
 					this.gettingLocation = false;
-					_this.objEmpleado.flagUbicacion = false;
+					
 					this.location = pos;
 				},err => {
 					this.gettingLocation = false;
-					_this.objEmpleado.flagUbicacion = false;
+					
 					this.errorStr = err.message;
 				})
 			},
@@ -339,21 +313,37 @@
 					_this.objEmpleado.are_descripcion= data.data.value.empleado.are_descripcion;
 					_this.objEmpleado.aresub_codigo= data.data.value.empleado.aresub_codigo;
 					_this.objEmpleado.aresub_descripcion= data.data.value.empleado.aresub_descripcion;
+					_this.objEmpleado.flagHabilitarMarcado = true;
 				})
 
 			},
-			alertMarcacionCorrecta(item) {
+			alertMarcacionIngreso(item) {
 				this.$swal({
 					position: 'top',
 					icon: 'success',
-					title: 'Marcación Correcta',
+					title: 'Marcación de Ingreso',
+					showConfirmButton: false,
+					timer: 1500,
+					timerProgressBar: true,
+					html:
+						'Fecha: <b style="color:#08C142">' + moment(item.fecha_hora_marcador, 'YYYY-MM-DD hh:mm:ss').format('DD-MM-YYYY') + '</b>  ' +
+						'Hora: <b style="color:#08C142">' + moment(item.fecha_hora_marcador, 'YYYY-MM-DD hh:mm:ss').format('hh:mm a') + '</b> '
+				}).then((result)=>{
+					this.LimpiarDatosEmpleado();
+				});
+			},
+			alertMarcacionSalida(item) {
+				this.$swal({
+					position: 'top',
+					icon: 'success',
+					title: 'Marcación de Salida',
 					showConfirmButton: false,
 					timer: 1500,
 					html:
-						'Fecha: <b>' + moment(item.fecha_hora_marcador, 'YYYY-MM-DD hh:mm:ss').format('DD-MM-YYYY') + '</b>  ' +
-						'Hora: <b>' + moment(item.fecha_hora_marcador, 'YYYY-MM-DD hh:mm:ss').format('hh:mm a') + '</b> '
+						'Fecha: <b style="color:#EE3811">' + moment(item.fecha_hora_marcador, 'YYYY-MM-DD hh:mm:ss').format('DD-MM-YYYY') + '</b>  ' +
+						'Hora: <b style="color:#EE3811">' + moment(item.fecha_hora_marcador, 'YYYY-MM-DD hh:mm:ss').format('hh:mm a') + '</b> '
 				}).then((result)=>{
-					this.clearMarcador();
+					this.LimpiarDatosEmpleado();
 				});
 			},
 			alertMarcacionError() {
@@ -372,12 +362,18 @@
 				let data = {
 					marcador: item
 				};
-
+				var valor;
 				var url = functions.getUrlApiAsistencia(constants.configUrlApiAsistencia.MARCADOR_INSERT);
 				await base.sendPost(url, JSON.stringify(data), true).then(function (data){
 					if(data !== undefined){
 						debugger;
-						_this.alertMarcacionCorrecta(item);
+						valor = data.data.value;
+						if (valor == 1) {
+							_this.alertMarcacionIngreso(item);
+						}else if (valor == 2){
+							_this.alertMarcacionSalida(item);
+						};
+						
 					}else{
 						_this.alertMarcacionError();
 					}
@@ -389,20 +385,26 @@
         components: {
            
 		},
-		props: ['numero'],
 		validations: {
 			codigo: {
 				required,
-				minLength: minLength(4)
+				minLength: minLength(8)
 			}
 		},
 		computed:{
-			
+			isDisabled(){
+				return !this.objEmpleado.flagHabilitarMarcado;
+			}
 		}
     };
 </script>
 
 <style type="text/css" scoped>
+
+button:disabled {
+	background-color:darkslategrey;
+}
+
 .form-group--error {
   animation-name: shakeError;
   animation-fill-mode: forwards;
