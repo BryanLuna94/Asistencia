@@ -2,8 +2,8 @@ var constants = {
 
     configApiAsistencia: {
 
-        URL_BASE: 'https://localhost:44343/',
-        // URL_BASE: 'https://apimarcador.somee.com/',
+        // URL_BASE: 'https://localhost:44343/',
+        URL_BASE: 'https://apimarcador.somee.com/',
         TIME_EXPIRE_TOKEN: '144000'
 
     },

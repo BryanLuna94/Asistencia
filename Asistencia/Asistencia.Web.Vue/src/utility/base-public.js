@@ -101,21 +101,23 @@ var base = {
     },
 
     sendGet: async function (pUrl) {
-        
+        debugger;
         return await axios.get(pUrl, {
             headers: {
                 'Content-Type': 'application/json'
             }
         })
-            .then(res => {
-                if (res.data.isCorrect) {
-                    return res;
-                }
+        .then(res => {
+            return res;
+            // if (res.data.isCorrect) {
+            //     return res;
+            // }
 
-            })
-            .catch(error => {
-                functions.getErrorResponse(error.response.status);
-            });
+        })
+        .catch(error => {
+            debugger;
+            functions.getErrorResponse(error.response.status);
+        });
     },
     
 

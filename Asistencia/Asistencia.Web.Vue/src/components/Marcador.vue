@@ -51,7 +51,7 @@
 														</div>
 														<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
 															<div class="form-group" :class="{ 'form-group--error': $v.codigo.$error }">
-																<label>COD. DE ASISTENCIA</label>
+																<label>N° DOCUMENTO</label>
 																<div class="m-b-30">
 																	<input v-focus class="form-control" type="password"  v-model.trim="codigo" @input="setCodigo($event.target.value)" v-on:keyup.enter="LlenarDatosEmpleado" v-on:keyup.delete="LimpiarDatosEmpleado" />
 																</div>
@@ -206,7 +206,6 @@
 		        objMarcador: {
 					id: 0,
 					emp_codigo: '',
-					tur_codigo: '',
 					fecha_hora_marcador:'',
 					longitud:0,
 					latitud:0,
@@ -242,7 +241,6 @@
 
 				this.objMarcador.id = 0;
 				this.objMarcador.emp_codigo = this.objEmpleado.emp_codigo;
-				this.objMarcador.tur_codigo = 'T01';
 				this.objMarcador.fecha_hora_marcador = moment(currentDate).format("YYYY-MM-DDTHH:mm:ss"); 
 				this.objMarcador.longitud = this.location.coords.longitude; 
 				this.objMarcador.latitud = this.location.coords.latitude; 
@@ -304,16 +302,26 @@
 				let _this = this;
 				var url = functions.getUrlApiAsistencia(constants.configUrlApiAsistencia.EMPLOYEE_SELECT + itemEmpleado);
 				await base.sendGet(url).then(function (data){
-					_this.objEmpleado.emp_codigo= data.data.value.empleado.emp_codigo;
-					_this.objEmpleado.emp_tipo= data.data.value.empleado.emp_tipo;
-					_this.objEmpleado.emp_nombre= data.data.value.empleado.emp_nombre;
-					_this.objEmpleado.suc_codigo= data.data.value.empleado.suc_codigo;
-					_this.objEmpleado.suc_nombre= data.data.value.empleado.suc_nombre;
-					_this.objEmpleado.are_codigo= data.data.value.empleado.are_codigo;
-					_this.objEmpleado.are_descripcion= data.data.value.empleado.are_descripcion;
-					_this.objEmpleado.aresub_codigo= data.data.value.empleado.aresub_codigo;
-					_this.objEmpleado.aresub_descripcion= data.data.value.empleado.aresub_descripcion;
-					_this.objEmpleado.flagHabilitarMarcado = true;
+
+					if (data.data.isCorrect) {
+						_this.objEmpleado.emp_codigo= data.data.value.empleado.emp_codigo;
+						_this.objEmpleado.emp_tipo= data.data.value.empleado.emp_tipo;
+						_this.objEmpleado.emp_nombre= data.data.value.empleado.emp_nombre;
+						_this.objEmpleado.suc_codigo= data.data.value.empleado.suc_codigo;
+						_this.objEmpleado.suc_nombre= data.data.value.empleado.suc_nombre;
+						_this.objEmpleado.are_codigo= data.data.value.empleado.are_codigo;
+						_this.objEmpleado.are_descripcion= data.data.value.empleado.are_descripcion;
+						_this.objEmpleado.aresub_codigo= data.data.value.empleado.aresub_codigo;
+						_this.objEmpleado.aresub_descripcion= data.data.value.empleado.aresub_descripcion;
+						_this.objEmpleado.flagHabilitarMarcado = true;
+
+						_this.mensaje='';
+					}else{
+						
+						_this.LimpiarDatosEmpleado();
+						_this.mensaje='No Encontrado';
+					}
+
 				})
 
 			},
