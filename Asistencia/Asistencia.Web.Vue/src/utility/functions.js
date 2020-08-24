@@ -13,7 +13,7 @@ var functions = {
 
     logout: function () {
         localStorage.removeItem(constants.configSession.USER);
-        window.location.href = rutaLogin;
+        window.location.href = constants.configWebAsistencia.URL_BASE_LOGIN;
     },
 
     getUrlApiAsistencia: function (url) {

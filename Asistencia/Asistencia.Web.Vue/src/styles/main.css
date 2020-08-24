@@ -56,7 +56,7 @@ p {
 	/* font-family: OpenSans-Regular; */
 	font-size: 14px;
 	line-height: 1.7;
-	color: #666666;
+	/* color: #666666; */
 	margin: 0px;
 }
 
@@ -175,7 +175,7 @@ iframe {
   display: block;
   /* font-family: OpenSans-Regular; */
   font-size: 30px;
-  color: #555555;
+  /* color: #555555; */
   line-height: 1.2;
   text-align: center;
 }
@@ -200,7 +200,7 @@ iframe {
   background: transparent;
   /* font-family: OpenSans-Regular; */
   font-size: 15px;
-  color: #666666;
+  /* color: #666666; */
   line-height: 1.2;
 }
 

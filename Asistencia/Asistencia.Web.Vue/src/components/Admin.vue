@@ -1,0 +1,42 @@
+<template>
+    <div>
+        
+        <div class="col text-center col-sm-12">
+            Pantalla de Admin
+            <button class="btn btn-primary btn-lg btn-block" v-on:click.prevent="logout()">Log out</button>
+        </div>	
+    </div>
+</template>
+
+<script>
+    import functions from "@/utility/functions";
+
+    export default {
+        name: 'Admin',
+        created(){
+            
+        },
+        mounted(){
+            functions.getUserData();
+        },
+        props: {
+            msg: String
+        },
+        data() {
+            return {
+            titulo: "admin",
+            
+            };
+        },
+        methods:{
+            logout: async function(){
+                functions.logout();
+            }
+        },
+    };
+</script>
+
+<!-- Add "scoped" attribute to limit CSS to this component only -->
+<style scoped>
+</style>
+

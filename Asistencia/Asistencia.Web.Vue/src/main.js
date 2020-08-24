@@ -7,10 +7,16 @@ import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import VueRouter from 'vue-router';
 import VueSweetalert2 from 'vue-sweetalert2';
+import VueToast from 'vue-toast-notification';
+// import 'vue-toast-notification/dist/theme-default.css';
+import 'vue-toast-notification/dist/theme-sugar.css';
 
 import Marcador from './components/Marcador.vue';
 import Geolocation from './components/Geolocation.vue';
 import Login from './components/Login.vue';
+import Home from './components/Home.vue';
+import Admin from './components/Admin.vue';
+
 // Install Bootstrap
 Vue.use(BootstrapVue);
 // Optionally install the BootstrapVue icon components plugin
@@ -21,6 +27,12 @@ Vue.use(VueRouter);
 Vue.use(Vuelidate);
 // Install VueSweetalert2
 Vue.use(VueSweetalert2);
+// Install Vue Toast
+Vue.use(VueToast);
+// let instance = Vue.$toast.open('You did it!');
+// instance.close();
+// Vue.$toast.clear();
+
 
 Vue.config.productionTip = true;
 
@@ -33,21 +45,14 @@ Vue.directive('focus', {
     }
   })
 
-  // Vue.prototype.$appName = 'Mi aplicación'
   
-  // Vue.mixin({
-  //     data: function() {
-  //         return {
-  //             flagLocation:false
-  //         }
-  //     }
-  // })
-
 
 const routes = [
     {path:'/marcador', component:Marcador},
     {path:'/geolocation', component:Geolocation},
     {path:'/login', component:Login},
+    {path:'/home', component:Home},
+    {path:'/admin', component:Admin},
     {path:'/', component:App},
 ]
 
