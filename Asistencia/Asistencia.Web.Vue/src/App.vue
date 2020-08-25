@@ -1,12 +1,11 @@
 <template>
-    <div id="app">
-
+   
 
         <router-view>
       
         </router-view>
 
-    </div>
+    
 </template>
 
 <script>
@@ -24,6 +23,9 @@
     };
 </script>
 
-<style>
+<style lang="scss">
+    @import '@/styles/bootstrap.scss';
+    @import '@/styles/app.scss';
+
 </style>
 

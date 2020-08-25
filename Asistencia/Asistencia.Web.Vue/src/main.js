@@ -1,9 +1,10 @@
 import Vue from 'vue';
+import Vuex from 'vuex';
 import App from './App.vue';
 import Vuelidate from 'vuelidate';
 
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue';
-import 'bootstrap/dist/css/bootstrap.css'
+
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import VueRouter from 'vue-router';
 import VueSweetalert2 from 'vue-sweetalert2';
@@ -16,6 +17,22 @@ import Geolocation from './components/Geolocation.vue';
 import Login from './components/Login.vue';
 import Home from './components/Home.vue';
 import Admin from './components/Admin.vue';
+import Recover from './components/Recover.vue';
+
+import Header from './components/Header.vue';
+import Sidebar from './components/Sidebar.vue';
+import Offsidebar from './components/Offsidebar.vue';
+
+// Font Awesome
+import '@fortawesome/fontawesome-free/css/brands.css';
+import '@fortawesome/fontawesome-free/css/regular.css';
+import '@fortawesome/fontawesome-free/css/solid.css';
+import '@fortawesome/fontawesome-free/css/fontawesome.css';
+
+// Simple line icons
+import 'simple-line-icons/css/simple-line-icons.css';
+
+import store from './store'
 
 // Install Bootstrap
 Vue.use(BootstrapVue);
@@ -32,7 +49,8 @@ Vue.use(VueToast);
 // let instance = Vue.$toast.open('You did it!');
 // instance.close();
 // Vue.$toast.clear();
-
+// Install Vuex
+Vue.use(Vuex);
 
 Vue.config.productionTip = true;
 
@@ -53,6 +71,11 @@ const routes = [
     {path:'/login', component:Login},
     {path:'/home', component:Home},
     {path:'/admin', component:Admin},
+    {path:'/recover', component:Recover},
+    
+    {path:'/header', component:Header},
+    {path:'/sidebar', component:Sidebar},
+    {path:'/offsidebar', component:Offsidebar},
     {path:'/', component:App},
 ]
 
@@ -63,5 +86,6 @@ const router = new VueRouter({
 
 new Vue({
     router,
+    store,
     render: h => h(App)
 }).$mount('#app');
