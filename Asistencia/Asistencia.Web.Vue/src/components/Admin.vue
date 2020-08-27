@@ -2,16 +2,21 @@
     <div class="wrapper">
         
 
-
         <!-- top navbar-->
         <Header />
 
         <!-- sidebar-->
         <Sidebar />
-        <div class="col text-center col-sm-12">
-            Pantalla de Admin
-            <button class="btn btn-primary btn-lg btn-block" v-on:click.prevent="logout()">Log out</button>
-        </div>	
+
+        <!-- offsidebar-->
+        <Offsidebar />
+
+        <section class="section-container">
+            <!-- Page content-->
+            <router-view/>
+        </section>
+
+
 
     </div>
 </template>
@@ -25,6 +30,8 @@
     import Footer from './Footer'
     import ContentWrapper from './ContentWrapper'
 
+    Vue.component('ContentWrapper', ContentWrapper)
+
     export default {
         name: 'Admin',
         components: {
@@ -37,7 +44,7 @@
             
         },
         mounted(){
-            // functions.getUserData();
+            functions.getUserData();
         },
         props: {
             msg: String

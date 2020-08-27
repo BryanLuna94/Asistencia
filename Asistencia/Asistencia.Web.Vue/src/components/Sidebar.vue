@@ -29,7 +29,7 @@
                     <template v-for="item in Menu">
                         <!-- Heading -->
                         <li class="nav-heading" v-if="item.heading">
-                            <!-- <span>{{$t(item.translate) || item.heading}}</span> -->
+                            <span>{{item.heading}}</span>
                         </li>
                         <!-- Single Menu -->
                         <router-link tag="li" :to="item.path" active-class="active" v-if="!item.heading && !item.submenu">
@@ -114,6 +114,7 @@
             // translate a key or return default values
             tr (key, defaultValue) {
                 // return key ? this.$t(key, {defaultValue: defaultValue}) : defaultValue;
+                return key ? defaultValue : defaultValue;
             },
             isRouteActive(paths) {
                 paths = Array.isArray(paths) ? paths : [paths];

@@ -19,9 +19,14 @@ import Home from './components/Home.vue';
 import Admin from './components/Admin.vue';
 import Recover from './components/Recover.vue';
 
+
 import Header from './components/Header.vue';
 import Sidebar from './components/Sidebar.vue';
 import Offsidebar from './components/Offsidebar.vue';
+
+import Turno from './components/Turno.vue';
+import Empleado from './components/Empleado.vue';
+import Usuario from './components/Usuario.vue';
 
 // Font Awesome
 import '@fortawesome/fontawesome-free/css/brands.css';
@@ -70,13 +75,33 @@ const routes = [
     {path:'/geolocation', component:Geolocation},
     {path:'/login', component:Login},
     {path:'/home', component:Home},
-    {path:'/admin', component:Admin},
+    {
+      path:'/admin', 
+      component:Admin,
+      children:[
+        {
+          path:'/turno', 
+          component:Turno
+        },
+        {
+          path:'/empleado', 
+          component:Empleado
+        },
+        {
+          path:'/usuario', 
+          component:Usuario
+        }
+      ]
+    },
     {path:'/recover', component:Recover},
     
     {path:'/header', component:Header},
     {path:'/sidebar', component:Sidebar},
     {path:'/offsidebar', component:Offsidebar},
-    {path:'/', component:App},
+
+    
+
+    {path:'/', redirect:'/login'},
 ]
 
 const router = new VueRouter({
