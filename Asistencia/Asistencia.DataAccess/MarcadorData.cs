@@ -29,7 +29,6 @@ namespace Asistencia.DataAccess
                 CommandType = CommandType.StoredProcedure
             };
             cmd.Parameters.Add("@emp_codigo", SqlDbType.VarChar).Value = marcador.emp_codigo;
-            cmd.Parameters.Add("@tur_codigo", SqlDbType.VarChar).Value = marcador.tur_codigo;
             cmd.Parameters.Add("@fecha_hora_marcador", SqlDbType.DateTime).Value = marcador.fecha_hora_marcador;
             cmd.Parameters.Add("@longitud", SqlDbType.Decimal).Value = marcador.longitud;
             cmd.Parameters.Add("@latitud", SqlDbType.Decimal).Value = marcador.latitud;
