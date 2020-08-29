@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using Asistencia.DataTypes.Objects.Entities;
 using Asistencia.DataTypes.Petitions.Requests;
 using System.Threading.Tasks;
+using Asistencia.DataTypes.Objects.Filters;
 
 namespace Asistencia.BusinessLayer
 {
@@ -35,5 +36,29 @@ namespace Asistencia.BusinessLayer
 
             return Functions.ResponseGeneric(newId);
         }
+
+        public Response<MarcadorResponse> List(MarcadorRequest request)
+        {
+            Response<MarcadorResponse> response;
+            MarcadorFilter filter;
+            List<MarcadorList> list;
+
+            filter = request.FilterMarcador;
+
+            list = _baseData.List(filter);
+
+            response = new Response<MarcadorResponse>
+            {
+                IsCorrect = true,
+                Value = new MarcadorResponse
+                {
+                    ListMarcador = list
+                },
+                Status = Constants.StatusWebApi.OK,
+            };
+
+            return response;
+        }
+
     }
 }

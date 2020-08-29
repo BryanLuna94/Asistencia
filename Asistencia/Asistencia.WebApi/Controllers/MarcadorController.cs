@@ -17,72 +17,21 @@ namespace Asistencia.WebApi.Controllers
             _marcadorLogic = new MarcadorLogic(configuration);
         }
 
-        // GET: MarcadorController
-        public ActionResult Index()
-        {
-            return View();
-        }
-
-        // GET: MarcadorController/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
-        // GET: MarcadorController/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
         [HttpPost(Constants.RoutesApi.MARCADOR_INSERT)]
         [Attributes.Excepcion]
-        public async Task<ActionResult> InsertUser([FromBody] MarcadorRequest request)
+        public async Task<ActionResult> InsertMarcador([FromBody] MarcadorRequest request)
         {
             var response = await _marcadorLogic.Insert(request);
             return Ok(response);
         }
 
-        // GET: MarcadorController/Edit/5
-        public ActionResult Edit(int id)
+        [HttpPost(Constants.RoutesApi.MARCADOR_LIST)]
+        [Attributes.Excepcion]
+        public IActionResult ListMarcador([FromBody] MarcadorRequest request)
         {
-            return View();
+            var response = _marcadorLogic.List(request);
+            return Ok(response);
         }
 
-        // POST: MarcadorController/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: MarcadorController/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: MarcadorController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
     }
 }

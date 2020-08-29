@@ -1,6 +1,7 @@
 ﻿using Asistencia.DataAccess.Connection;
 using Asistencia.DataAccess.Utility;
 using Asistencia.DataTypes.Objects.Entities;
+using Asistencia.DataTypes.Objects.Filters;
 using Asistencia.DataTypes.Objects.Lists;
 using Microsoft.Extensions.Configuration;
 using System;
@@ -40,6 +41,44 @@ namespace Asistencia.DataAccess
             if (con.State == ConnectionState.Open) { con.Close(); }
             return newId;
         }
+
+        public List<MarcadorList> List(MarcadorFilter pFilter)
+        {
+            List<MarcadorList> List = new List<MarcadorList>();
+
+            using (SqlConnection con = _connection.DBPLANILLA())
+            {
+                using (SqlCommand cmd = new SqlCommand("usp_tbl_Marcador_List", con))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add("@emp_codigo", SqlDbType.VarChar).Value = pFilter.emp_codigo;
+
+                    if (con.State != ConnectionState.Open) { con.Open(); }
+
+                    using (var dr = cmd.ExecuteReader())
+                    {
+                        while (dr.Read())
+                        {
+                            List.Add(new MarcadorList
+                            {
+                                id = DataReader.GetIntValue(dr, "Id"),
+                                emp_codigo = DataReader.GetStringValue(dr, "Emp_codigo"),
+                                fecha_Hora_Actual = DataReader.GetDateTimeValue(dr, "Fecha_Hora_Actual"),
+                                fecha_Hora_Inicial = DataReader.GetDateTimeValue(dr, "Fecha_Hora_Inicial"),
+                                fecha_Hora_Final = DataReader.GetDateTimeValue(dr, "Fecha_Hora_Final"),
+                                fecha_Hora_Inicial_Manual = DataReader.GetDateTimeValue(dr, "Fecha_Hora_Inicial_Manual"),
+                                longitud = DataReader.GetDecimalValue(dr, "Longitud"),
+                                latitud = DataReader.GetDecimalValue(dr, "Latitud"),
+                            });
+                        }
+                    }
+                }
+                if (con.State == ConnectionState.Open) { con.Close(); }
+            }
+
+            return List;
+        }
+
         #endregion
 
     }
