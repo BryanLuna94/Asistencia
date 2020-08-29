@@ -22,6 +22,11 @@ const Menu = [
                 name: 'Usuarios',
                 path: '/usuario',
                 // translate: 'sidebar.nav.pages.LOGIN'
+            },
+            {
+                name: 'Registro Marcador',
+                path: '/marcadorMant',
+                // translate: 'sidebar.nav.pages.LOGIN'
             }
         ],
     },

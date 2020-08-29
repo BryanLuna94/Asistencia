@@ -44,7 +44,7 @@
             
         },
         mounted(){
-            functions.getUserData();
+            // functions.getUserData();
         },
         props: {
             msg: String

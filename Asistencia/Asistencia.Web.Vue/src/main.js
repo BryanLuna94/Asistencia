@@ -11,6 +11,7 @@ import VueSweetalert2 from 'vue-sweetalert2';
 import VueToast from 'vue-toast-notification';
 // import 'vue-toast-notification/dist/theme-default.css';
 import 'vue-toast-notification/dist/theme-sugar.css';
+import VuePaginate from 'vue-paginate'; 
 
 import Marcador from './components/Marcador.vue';
 import Geolocation from './components/Geolocation.vue';
@@ -27,6 +28,7 @@ import Offsidebar from './components/Offsidebar.vue';
 import Turno from './components/Turno.vue';
 import Empleado from './components/Empleado.vue';
 import Usuario from './components/Usuario.vue';
+import MarcadorMant from './components/MarcadorMant.vue';
 
 // Font Awesome
 import '@fortawesome/fontawesome-free/css/brands.css';
@@ -56,6 +58,8 @@ Vue.use(VueToast);
 // Vue.$toast.clear();
 // Install Vuex
 Vue.use(Vuex);
+// Install Vue Paginate
+Vue.use(VuePaginate);
 
 Vue.config.productionTip = true;
 
@@ -90,11 +94,14 @@ const routes = [
         {
           path:'/usuario', 
           component:Usuario
+        },
+        {
+          path:'/marcadorMant', 
+          component:MarcadorMant
         }
       ]
     },
     {path:'/recover', component:Recover},
-    
     {path:'/header', component:Header},
     {path:'/sidebar', component:Sidebar},
     {path:'/offsidebar', component:Offsidebar},
