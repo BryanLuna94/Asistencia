@@ -30,7 +30,7 @@ var base = {
     },
 
     sendPost: async function (pUrl, pJson, showMessageSuccess) {
-        debugger;
+        
         if (showMessageSuccess === undefined) showMessageSuccess = false;
         return await axios.post(pUrl, pJson, {
             headers: {
@@ -38,7 +38,7 @@ var base = {
             }
         })
             .then(res => {
-                debugger;
+                
                 if (res.data.isCorrect) {
                     
                     if (showMessageSuccess) {

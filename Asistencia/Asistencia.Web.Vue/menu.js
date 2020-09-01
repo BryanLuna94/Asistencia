@@ -4,7 +4,7 @@ const Menu = [
         translate: 'sidebar.heading.HEADER'
     },
     {
-        name: 'Mantenimientos',
+        name: 'Configuracion',
         icon: 'icon-doc',
         translate: 'sidebar.nav.pages.PAGES',
         submenu: [
@@ -22,22 +22,17 @@ const Menu = [
                 name: 'Usuarios',
                 path: '/usuario',
                 // translate: 'sidebar.nav.pages.LOGIN'
-            },
-            {
-                name: 'Registro Marcador',
-                path: '/marcadorMant',
-                // translate: 'sidebar.nav.pages.LOGIN'
             }
         ],
     },
     {
-        name: 'Pantallas',
+        name: 'Registro',
         icon: 'icon-note',
         translate: 'sidebar.nav.pages.PAGES',
         submenu: [
             {
                 name: 'Marcador',
-                path: '/marcador',
+                path: '/marcadorMant',
                 // translate: 'sidebar.nav.pages.LOGIN'
             }
         ]
