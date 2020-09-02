@@ -1,12 +1,14 @@
 <template>
 	
     <div class="col-sm-12 container-login100">
-		<div class="col-sm-12">
+		<div>
             <div v-if="gettingLocation">
                 <i>Obteniendo su ubicación...</i>
             </div>
 			<div v-else-if="errorStr">
                 Lo sentimos, pero ocurrió el siguiente error: {{errorStr}}
+
+				<Geolocation />
             </div>
 			<div v-else>
 				<div class="col-sm-12">
@@ -160,7 +162,7 @@
 	import base from '@/utility/base-public';
 	
 	import { required, minLength, between } from 'vuelidate/lib/validators';
-	
+	import Geolocation from './Geolocation';
 
     export default {
 		name: 'marcador',
@@ -390,9 +392,9 @@
 			}
 
         },
-        components: {
-           
-		},
+        components:{
+          Geolocation
+        },
 		validations: {
 			codigo: {
 				required,
