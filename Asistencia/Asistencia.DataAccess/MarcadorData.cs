@@ -63,10 +63,10 @@ namespace Asistencia.DataAccess
                             {
                                 id = DataReader.GetIntValue(dr, "Id"),
                                 emp_codigo = DataReader.GetStringValue(dr, "Emp_codigo"),
-                                fecha_Hora_Actual = DataReader.GetDateTimeValue(dr, "Fecha_Hora_Actual"),
-                                fecha_Hora_Inicial = DataReader.GetDateTimeValue(dr, "Fecha_Hora_Inicial"),
-                                fecha_Hora_Final = DataReader.GetDateTimeValue(dr, "Fecha_Hora_Final"),
-                                fecha_Hora_Inicial_Manual = DataReader.GetDateTimeValue(dr, "Fecha_Hora_Inicial_Manual"),
+                                fecha_Hora_Actual = DataReader.GetDateTimeValue(dr, "Fecha_Hora_Actual").ToString(),
+                                fecha_Hora_Inicial = DataReader.GetDateTimeValue(dr, "Fecha_Hora_Inicial").ToString(),
+                                fecha_Hora_Final = DataReader.GetDateTimeValue(dr, "Fecha_Hora_Final").ToString(),
+                                fecha_Hora_Inicial_Manual = DataReader.GetDateTimeValue(dr, "Fecha_Hora_Inicial_Manual").ToString(),
                                 longitud = DataReader.GetDecimalValue(dr, "Longitud"),
                                 latitud = DataReader.GetDecimalValue(dr, "Latitud"),
                             });
