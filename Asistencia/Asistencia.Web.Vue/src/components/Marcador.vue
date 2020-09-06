@@ -3,15 +3,54 @@
     <div class="col-sm-12 container-login100">
 		<div>
             <div v-if="gettingLocation">
-                <i>Obteniendo su ubicación...</i>
+                <!-- <i>Obteniendo su ubicación...</i> -->
             </div>
-			<div v-else-if="errorStr">
-                Lo sentimos, pero ocurrió el siguiente error: {{errorStr}}
-
+			<div v-else-if="errorStr && errorLocalizacionManual">
+                <!-- Lo sentimos, pero ocurrió el siguiente error: {{errorStr}} -->
 				<Geolocation />
-            </div>
+			</div>
 			<div v-else>
 				<div class="col-sm-12">
+					<div v-if="errorStr==null">
+						<div class="card text-white bg-dark mb-3">
+							<div class="card-body">
+								<h5 class="card-title">Distancia en Metros | 
+									<b v-if="errorLocalizacionManual">Localización por GPS</b>
+									<b v-else>Localización Manual</b>
+									<b> |Latitud: {{latitud}} </b> 
+									<b> |Longitud: {{longitud}}</b>
+									<b>
+										<button v-on:click.prevent="obtenerSucursalConfiguracion('')" class="btn btn-primary btn-xs mr-1" type="button">Actualizar</button>
+									</b>
+								</h5>
+								<div class="card-text">
+									<table>
+										<tr>
+											<th>Dirección Fisica</th>
+											<th>Distancia Real</th>
+											<th>Distancia Permitida</th>
+											<th></th>
+										</tr>
+										<tr v-for="configuracion in listSucursalConfiguracion" v-bind:key="configuracion.id">
+											<td>{{configuracion.direccion_fisica}}</td>
+											<td>{{configuracion.distancia_metros_calculada}}</td>
+											<td>{{configuracion.distancia_metros_permitida}}</td>
+											<td>
+												<button v-if="configuracion.distancia_metros_calculada < configuracion.distancia_metros_permitida" class="btn btn-primary btn-xs mr-1" type="button">Marcación Permitida</button>
+												<button v-else class="btn btn-danger btn-xs mr-1" type="button">Marcación No Permitida</button>
+											</td>
+										</tr>
+									</table>
+								</div>
+								<!-- <p class="card-text">
+									{{distanciaEnMetros}} metros. 
+									
+								</p> -->
+							</div>
+						</div>
+
+						
+					</div>
 					<div class="row">
 						<div class="col-lg-12">
 							<div>
@@ -147,7 +186,8 @@
 						</div>
 					</div>
 				</div>
-			</div>
+			</div>		
+            
 		</div>
 		
     </div>
@@ -169,11 +209,15 @@
      
 		created(){
 			this.obtenerGeolocation();
+			this.obtenerLocalizacionManual();
 		},
+
         mounted(){
-			
-            setInterval(this.callFunction,1000);
-        },
+			setInterval(this.callFunction,1000);
+		},
+		beforeMount(){
+			// this.obtenerSucursalConfiguracion('');
+		},
         data(){
             return {
                 titulo: 'Marcador',
@@ -185,7 +229,26 @@
 
                 location:null,
                 gettingLocation: false,
-                errorStr:null,
+				errorStr:null,
+				errorLocalizacionManual:null,
+
+				latitud:0,
+				longitud:0,
+				mensajePorDistancia:'',
+				distanciaEnMetros:0,
+				GPSTimeout : 0,
+
+				listSucursalConfiguracion:[
+					{
+						id: 0,
+						direccion_fisica :'',
+						latitud: 0,
+						longitud: 0,
+						distancia_metros_permitida:0,
+						distancia_metros_calculada:0,
+					}
+
+				],
 
 				objEmpleado: {
 					emp_codigo: '',
@@ -231,7 +294,7 @@
 
 	        },
 	        LlenarDatosEmpleado: function (e) {
-				debugger;
+				
 				let _this = this;
 				_this.ObtenerEmpleado(this.objFilter.codigoAsistencia);
 			},
@@ -288,10 +351,16 @@
 				this.gettingLocation = true;
 				
 				//get position
+				
 				navigator.geolocation.getCurrentPosition(pos=>{
+					// debugger;
 					this.gettingLocation = false;
 					
 					this.location = pos;
+					this.latitud = pos.coords.latitude
+					this.longitud = pos.coords.longitude
+
+
 				},err => {
 					this.gettingLocation = false;
 					
@@ -389,7 +458,81 @@
 					}
 				});
 
-			}
+			},
+			obtenerLocalizacionManual(){
+				var value = localStorage.getItem(constants.configSession.LOCALIZACION_MANUAL);
+				if (value === null) {
+					this.errorLocalizacionManual = "SinConfiguracionManual";
+				}
+			},
+			degreesToRadians: function(degrees) {
+				return degrees * (Math.PI / 180);
+			},
+			distanceEnMetrosEntreCoordenadas: function(lat1, lon1, lat2, lon2) {
+
+				
+				var earthRadiusKm = 6371;
+				var factorConversionToMeters = 1000;
+
+				var dLat = this.degreesToRadians(lat2-lat1);
+				var dLon = this.degreesToRadians(lon2-lon1);
+
+				lat1 = this.degreesToRadians(lat1);
+				lat2 = this.degreesToRadians(lat2);
+
+				var a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+						Math.sin(dLon/2) * Math.sin(dLon/2) * Math.cos(lat1) * Math.cos(lat2); 
+				var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
+				return Math.round(earthRadiusKm * c * factorConversionToMeters);
+			},
+			obtenerSucursalConfiguracion: async function(item){
+				let _this = this;
+				let data = {
+					filterSucursalConfiguracion: {
+						codigo_sucursal: item,
+					},
+				};
+				var url = functions.getUrlApiAsistencia(
+					constants.configUrlApiAsistencia.SUCURSALCONFIGURACION_LIST
+				);
+				await base.sendPost(url, JSON.stringify(data), true).then(function(data) {
+					if (data !== undefined) {
+						
+					_this.listSucursalConfiguracion = data.data.value.listSucursalConfiguracion
+						? data.data.value.listSucursalConfiguracion
+						: [];
+
+					_this.calcularDistanciaEnMetrosPorSucursal(_this.listSucursalConfiguracion);
+
+					// _this.$nextTick(() => {
+					// 	if (_this.list.Marcador.length > 0) {
+					// 	_this.$refs.listSucursalConfiguracion.goToPage(1);
+					// 	}
+					// });
+					} else {
+					// _this.alertMarcacionError();
+					}
+				});
+			},
+			calcularDistanciaEnMetrosPorSucursal: function(item){
+				let _this = this;
+
+				for (let index = 0; index < item.length; index++) {
+					// const element = item[index].distancia_metros_permitida;
+					item[index].distancia_metros_calculada =
+					_this.distanceEnMetrosEntreCoordenadas(
+						_this.latitud,_this.longitud,
+						item[index].latitud,
+						item[index].longitud);
+				}
+
+				console.log(item);
+			},
+
+		
+
+
+
 
         },
         components:{

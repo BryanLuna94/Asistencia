@@ -16,6 +16,7 @@ var functions = {
         window.location.href = constants.configWebAsistencia.URL_BASE_LOGIN;
     },
 
+
     getUrlApiAsistencia: function (url) {
         return constants.configApiAsistencia.URL_BASE + url;
     },
@@ -27,6 +28,7 @@ var functions = {
         }
         return JSON.parse(value);
     },
+
 
     getErrorResponse: function (status) {
         if (status) {

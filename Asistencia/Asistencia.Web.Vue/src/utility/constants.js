@@ -2,22 +2,23 @@ var constants = {
 
     configApiAsistencia: {
 
-        URL_BASE: 'https://localhost:44343/',
-        // URL_BASE: 'https://apimarcador.somee.com/',
+        // URL_BASE: 'https://localhost:44343/',
+        URL_BASE: 'https://apimarcador.somee.com/',
         TIME_EXPIRE_TOKEN: '144000'
 
     },
 
     configWebAsistencia:{
-        URL_BASE_HOME: 'http://localhost:8080/home',
-        URL_BASE_ADMIN: 'http://localhost:8080/admin',
-        URL_BASE_MARCADOR: 'http://localhost:8080/marcador',
-        URL_BASE_LOGIN: 'http://localhost:8080/login',
+        // URL_BASE_HOME: 'http://localhost:8080/home',
+        // URL_BASE_ADMIN: 'http://localhost:8080/admin',
+        // URL_BASE_MARCADOR: 'http://localhost:8080/marcador',
+        // URL_BASE_LOGIN: 'http://localhost:8080/login',
+        
 
-        // URL_BASE_HOME: 'https://marcador-15f7a.web.app/home',
-        // URL_BASE_ADMIN: 'https://marcador-15f7a.web.app/admin',
-        // URL_BASE_MARCADOR: 'https://marcador-15f7a.web.app/marcador',
-        // URL_BASE_LOGIN: 'https://marcador-15f7a.web.app/login',
+        URL_BASE_HOME: 'https://marcador-15f7a.web.app/home',
+        URL_BASE_ADMIN: 'https://marcador-15f7a.web.app/admin',
+        URL_BASE_MARCADOR: 'https://marcador-15f7a.web.app/marcador',
+        URL_BASE_LOGIN: 'https://marcador-15f7a.web.app/login',
 
 
     },
@@ -26,7 +27,7 @@ var constants = {
 
         IDIOMA_DEFECTO: 'en',
         NAME: 'ASISTENCIA',
-        COPYRIGHT: 'VR1 Software'
+        COPYRIGHT: 'VR1 Software',
 
     },
 
@@ -42,7 +43,8 @@ var constants = {
     configSession : {
 
         USER: 'userLogin',
-        LANGUAGE: 'languaje'
+        LANGUAGE: 'languaje',
+        LOCALIZACION_MANUAL: 'manuallocation'
 
     },
 
@@ -66,6 +68,14 @@ var constants = {
         MARCADOR_DISABLE: 'api/Marcador/DisableMarcador/',
         MARCADOR_LIST: 'api/Marcador/ListMarcador',
         MARCADOR_SELECT: 'api/Marcador/SelectMarcador/',
+
+        EMPRESA_LIST: 'api/Empresa/ListEmpresa',
+        SUCURSAL_LIST: 'api/Sucursal/ListSucursal',
+        AREA_LIST: 'api/Area/ListArea',
+        SUBAREA_LIST: 'api/SubArea/ListSubArea',
+        PUNTODEVENTA_LIST: 'api/PuntodeVenta/ListPuntodeVenta',
+
+        SUCURSALCONFIGURACION_LIST: 'api/SucursalConfiguracion/ListSucursalConfiguracion',
 
         COMPANY_INSERT: 'api/Company/InsertCompany',
         COMPANY_UPDATE: 'api/Company/UpdateCompany/{0}',
