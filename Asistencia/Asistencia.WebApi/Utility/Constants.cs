@@ -20,6 +20,14 @@
             public const string MARCADOR_LIST = "api/Marcador/ListMarcador";
             public const string MARCADOR_SELECT = "api/Marcador/SelectMarcador/{pId}";
 
+            public const string EMPRESA_LIST = "api/Empresa/ListEmpresa";
+            public const string SUCURSAL_LIST = "api/Sucursal/ListSucursal";
+            public const string AREA_LIST = "api/Area/ListArea";
+            public const string SUBAREA_LIST = "api/SubArea/ListSubArea";
+            public const string PUNTODEVENTA_LIST = "api/PuntodeVenta/ListPuntodeVenta";
+
+            public const string SUCURSALCONFIGURACION_LIST = "api/SucursalConfiguracion/ListSucursalConfiguracion";
+
             #endregion
         }
 
