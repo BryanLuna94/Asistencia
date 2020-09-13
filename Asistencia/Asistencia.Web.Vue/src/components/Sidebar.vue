@@ -7,19 +7,19 @@
                 <ul class="sidebar-nav">
                     <!-- START user info-->
                     <li class="has-user-block">
-                        <b-collapse :visible="false" id="user-block">
+                        <b-collapse :visible="showUserBlock" id="user-block">
                             <div class="item user-block">
                                 <!-- User picture-->
                                 <div class="user-block-picture">
                                     <div class="user-block-status">
-                                        <img class="img-thumbnail rounded-circle" src="img/user/02.jpg" alt="Avatar" width="60" height="60">
+                                        <img class="img-thumbnail rounded-circle" src="img/user/01.jpg" alt="Avatar" width="60" height="60">
                                         <div class="circle bg-success circle-lg"></div>
                                     </div>
                                 </div>
                                 <!-- Name and Job-->
                                 <div class="user-block-info">
-                                    <span class="user-block-name">Hello, Mike</span>
-                                    <span class="user-block-role">Designer</span>
+                                    <span class="user-block-name">{{objUsuario.nom_user}}</span>
+                                    <!-- <span class="user-block-role">Designer</span> -->
                                 </div>
                             </div>
                         </b-collapse>
@@ -73,20 +73,26 @@
     import SidebarRun from './Sidebar.run.js';
     import Menu from '../../menu.js';
 
+    import functions from "@/utility/functions";
+
     export default {
         name: 'Sidebar',
         data() {
             return {
                 Menu,
-                collapse: this.buildCollapseList()
+                collapse: this.buildCollapseList(),
+                objUsuario:[],
             }
+        },
+        created(){
+            this.getUser();
         },
         mounted() {
             SidebarRun(this.$router, this.closeSidebar.bind(this))
         },
         computed: {
             ...mapState({
-                showUserBlock: state => false
+                showUserBlock: state => state.setting.showUserBlock
             })
         },
         watch:{
@@ -129,6 +135,11 @@
                         this.collapse[c] = false
                 }
                 this.collapse[collapseName] = !this.collapse[collapseName]
+            },
+            getUser(){
+                let _this = this;
+                _this.objUsuario = functions.getUserData().usuario;
+                console.log(_this.objUsuario);
             }
 
         }

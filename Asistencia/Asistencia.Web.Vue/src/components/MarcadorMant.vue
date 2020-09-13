@@ -6,7 +6,7 @@
             </div>
         </div>
         <div class="container-fluid">
-            <ListMarcadores />
+            <MarcadoresList />
         </div>
 
     </ContentWrapper>
@@ -14,12 +14,12 @@
 
 <script>
 
-    import ListMarcadores from './ListaMarcadores';
+    import MarcadoresList from './MarcadoresList';
 
     export default {
         name: 'MarcadorMant',
         components: {
-            ListMarcadores
+            MarcadoresList
         },
         data() {
             return {

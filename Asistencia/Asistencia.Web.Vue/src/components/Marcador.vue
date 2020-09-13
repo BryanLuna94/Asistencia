@@ -1,5 +1,5 @@
 <template>
-	
+	<ContentWrapper>
     <div class="col-sm-12 container-login100">
 		<div>
             <div v-if="gettingLocation">
@@ -14,44 +14,56 @@
 					<div v-if="errorStr==null">
 						<div class="card text-white bg-dark mb-3">
 							<div class="card-body">
-								<h5 class="card-title">Distancia en Metros | 
+								<h5 class="card-title">
 									<b v-if="errorLocalizacionManual">Localización por GPS</b>
 									<b v-else>Localización Manual</b>
-									<b> |Latitud: {{latitud}} </b> 
-									<b> |Longitud: {{longitud}}</b>
-									<b>
-										<button v-on:click.prevent="obtenerSucursalConfiguracion('')" class="btn btn-primary btn-xs mr-1" type="button">Actualizar</button>
-									</b>
+									<div class="float-right">
+										<button v-on:click.prevent="obtenerSucursalConfiguracion('')" class="btn btn-info btn-xs mr-1" type="button">
+											Actualizar
+											<em class="fas fa-sync"></em>
+										</button>
+									</div>
 								</h5>
-								<div class="card-text">
+								<div class="card-text" v-if="listSucursalConfiguracionFiltrada.length > 0">
+									Sucursal más proxima...
 									<table>
 										<tr>
-											<th>Dirección Fisica</th>
-											<th>Distancia Real</th>
+											<th>Sucursal</th>
+											<th>Distancia Actual</th>
 											<th>Distancia Permitida</th>
 											<th></th>
 										</tr>
-										<tr v-for="configuracion in listSucursalConfiguracion" v-bind:key="configuracion.id">
-											<td>{{configuracion.direccion_fisica}}</td>
-											<td>{{configuracion.distancia_metros_calculada}}</td>
-											<td>{{configuracion.distancia_metros_permitida}}</td>
+										<tr v-for="configuracion in listSucursalConfiguracionFiltrada" v-bind:key="configuracion.id">
+											
+											<td>{{configuracion.descripcion_sucursal}}</td>
+											<td>{{configuracion.distancia_metros_calculada}} metros</td>
+											<td>{{configuracion.distancia_metros_permitida}} metros</td>
 											<td>
-												<button v-if="configuracion.distancia_metros_calculada < configuracion.distancia_metros_permitida" class="btn btn-primary btn-xs mr-1" type="button">Marcación Permitida</button>
-												<button v-else class="btn btn-danger btn-xs mr-1" type="button">Marcación No Permitida</button>
+												<div v-if="configuracion.distancia_metros_calculada < configuracion.distancia_metros_permitida">
+													<button  
+													class="btn btn-primary btn-xs mr-1" type="button">Marcación Permitida</button>
+													<button class="btn btn-success btn-xs mr-1" 
+														v-on:click.prevent="showMarcador(configuracion)"
+														type="button">
+														Seleccionar
+														<em class="far fa-hand-pointer"></em>
+													</button>
+												</div>
+												<div v-else>
+													<button class="btn btn-danger btn-xs mr-1" type="button">Marcación No Permitida</button>
+												</div>
 											</td>
+											
 										</tr>
 									</table>
-								</div>
-								<!-- <p class="card-text">
-									{{distanciaEnMetros}} metros. 
 									
-								</p> -->
+								</div>
+							
 							</div>
 						</div>
-
-						
+				
 					</div>
-					<div class="row">
+					<div class="row" v-if="flagSeleccionarSucursal">
 						<div class="col-lg-12">
 							<div>
 								<div class="panel-heading">
@@ -71,7 +83,9 @@
 													<label class="col-xs-12 col-sm-12 col-md-12 col-lg-12 m-b-0 p-0">SUCURSAL:</label>
 												</div>
 												<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6" style="padding-left:1px; padding-right:2px;">
-													<label class="col-xs-12 col-sm-12 col-md-12 col-lg-12 m-b-0 p-0 text-black-50">003 - 06 TERMINAL FLORES LIMA </label>
+													<label class="col-xs-12 col-sm-12 col-md-12 col-lg-12 m-b-0 p-0 text-black-50">
+														{{objSucursal.codigo_sucursal}} - {{objSucursal.descripcion_sucursal}} 
+													</label>
 												</div>
 											</div>
 										</div>
@@ -191,15 +205,20 @@
 		</div>
 		
     </div>
+	</ContentWrapper>
 </template>
 
 
 <script>
+	import CardTool from './Common/CardTool';
+
 	import moment from 'moment';
 	import axios from 'axios';
 	import constants from '@/utility/constants';
 	import functions from '@/utility/functions';
 	import base from '@/utility/base-public';
+
+	
 	
 	import { required, minLength, between } from 'vuelidate/lib/validators';
 	import Geolocation from './Geolocation';
@@ -215,9 +234,6 @@
         mounted(){
 			setInterval(this.callFunction,1000);
 		},
-		beforeMount(){
-			// this.obtenerSucursalConfiguracion('');
-		},
         data(){
             return {
                 titulo: 'Marcador',
@@ -232,20 +248,23 @@
 				errorStr:null,
 				errorLocalizacionManual:null,
 
+				flagSeleccionarSucursal: false,
 				latitud:0,
 				longitud:0,
 				mensajePorDistancia:'',
 				distanciaEnMetros:0,
 				GPSTimeout : 0,
-
+				listSucursalConfiguracionFiltrada:[],
 				listSucursalConfiguracion:[
 					{
 						id: 0,
 						direccion_fisica :'',
+						descripcion_sucursal:'',
 						latitud: 0,
 						longitud: 0,
 						distancia_metros_permitida:0,
 						distancia_metros_calculada:0,
+						flag_permitido: false,
 					}
 
 				],
@@ -274,7 +293,11 @@
 					fecha_hora_marcador:'',
 					longitud:0,
 					latitud:0,
-		        },
+				},
+				objSucursal:{
+					codigo_sucursal:'',
+					descripcion_sucursal:'',
+				}
             }
         },
         methods:{
@@ -373,7 +396,7 @@
 				let _this = this;
 				var url = functions.getUrlApiAsistencia(constants.configUrlApiAsistencia.EMPLOYEE_SELECT + itemEmpleado);
 				await base.sendGet(url).then(function (data){
-
+					
 					if (data.data.isCorrect) {
 						_this.objEmpleado.emp_codigo= data.data.value.empleado.emp_codigo;
 						_this.objEmpleado.emp_tipo= data.data.value.empleado.emp_tipo;
@@ -504,13 +527,8 @@
 
 					_this.calcularDistanciaEnMetrosPorSucursal(_this.listSucursalConfiguracion);
 
-					// _this.$nextTick(() => {
-					// 	if (_this.list.Marcador.length > 0) {
-					// 	_this.$refs.listSucursalConfiguracion.goToPage(1);
-					// 	}
-					// });
 					} else {
-					// _this.alertMarcacionError();
+						
 					}
 				});
 			},
@@ -518,25 +536,42 @@
 				let _this = this;
 
 				for (let index = 0; index < item.length; index++) {
-					// const element = item[index].distancia_metros_permitida;
 					item[index].distancia_metros_calculada =
 					_this.distanceEnMetrosEntreCoordenadas(
 						_this.latitud,_this.longitud,
 						item[index].latitud,
 						item[index].longitud);
+
+					item[index].flag_permitido = 
+					(item[index].distancia_metros_permitida >= item[index].distancia_metros_calculada)
+					? true : false;
 				}
 
-				console.log(item);
+				this.obtenerSucursalConfiguracionCercana(item);
+
 			},
 
-		
-
+			obtenerSucursalConfiguracionCercana: function(item){
+				let _this = this;
+				// filtrar solo disponibles
+				let min = Math.min(...item.map(item => item.distancia_metros_calculada))
+				_this.listSucursalConfiguracionFiltrada = item.filter(item => item.distancia_metros_calculada === min)
+			},
+  
+			showMarcador: function(item){
+				let _this = this;
+				_this.flagSeleccionarSucursal = true;
+				_this.objSucursal.codigo_sucursal = item.codigo_sucursal;
+				_this.objSucursal.descripcion_sucursal = item.descripcion_sucursal;
+				console.log(item);
+			},
 
 
 
         },
         components:{
-          Geolocation
+		  Geolocation,
+		  CardTool
         },
 		validations: {
 			codigo: {

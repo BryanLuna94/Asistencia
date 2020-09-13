@@ -29,9 +29,9 @@
                 <!-- START User avatar toggle-->
                 <li class="nav-item d-none d-md-block">
                     <!-- Button used to collapse the left sidebar. Only visible on tablet and desktops-->
-                    <!-- <a class="nav-link" href="" @click.prevent="toggleUserBlock">
+                    <a class="nav-link" href="" @click.prevent="toggleUserBlock">
                         <em class="icon-user"></em>
-                    </a> -->
+                    </a>
                 </li>
                 <!-- END User avatar toggle-->
                 <!-- START lock screen-->

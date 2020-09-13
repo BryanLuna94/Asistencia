@@ -29,6 +29,7 @@ import Turno from './components/Turno.vue';
 import Empleado from './components/Empleado.vue';
 import Usuario from './components/Usuario.vue';
 import MarcadorMant from './components/MarcadorMant.vue';
+import SucursalConfiguracionMant from './components/SucursalConfiguracionMant.vue';
 
 // Font Awesome
 import '@fortawesome/fontawesome-free/css/brands.css';
@@ -40,6 +41,9 @@ import '@fortawesome/fontawesome-free/css/fontawesome.css';
 import 'simple-line-icons/css/simple-line-icons.css';
 
 import store from './store'
+
+// Animate.CSS
+import 'animate.css/animate.min.css';
 
 // Install Bootstrap
 Vue.use(BootstrapVue);
@@ -98,6 +102,10 @@ const routes = [
         {
           path:'/marcadorMant', 
           component:MarcadorMant
+        },
+        {
+          path:'/sucursalConfiguracionMant', 
+          component:SucursalConfiguracionMant
         }
       ]
     },

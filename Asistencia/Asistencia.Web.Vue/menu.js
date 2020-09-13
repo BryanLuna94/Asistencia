@@ -34,6 +34,11 @@ const Menu = [
                 name: 'Marcador',
                 path: '/marcadorMant',
                 // translate: 'sidebar.nav.pages.LOGIN'
+            },
+            {
+                name: 'Sucursal Configuración',
+                path: '/sucursalConfiguracionMant',
+                // translate: 'sidebar.nav.pages.LOGIN'
             }
         ]
     }
