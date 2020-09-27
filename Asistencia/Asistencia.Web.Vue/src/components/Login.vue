@@ -137,6 +137,7 @@ export default {
             _this.LimpiarDatosUsuario();
           })
           .catch((error) => {
+            debugger;
             _this.MostrarMensajeError("Ocurrió una excepción en el sistema.");
           });
       } else {
