@@ -127,10 +127,10 @@ namespace Asistencia.BusinessLayer
 
             #region Validaciones
 
-            //if (objUser.UserName != objUserOld.UserName && _userData.ValidateExists(objUser))
-            //{
-            //    return new Response<int> { IsCorrect = false, Status = Constants.StatusWebApi.ITEM_EXISTS };
-            //}
+            if (objUser.UserName != objUserOld.UserName && _userData.ValidateExists(objUser))
+            {
+                return new Response<int> { IsCorrect = false, Status = Constants.StatusWebApi.ITEM_EXISTS };
+            }
 
             #endregion
 

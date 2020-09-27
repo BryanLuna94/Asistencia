@@ -23,9 +23,9 @@ namespace Asistencia.WebApi.Utility.Token
 
             var claims = new[]
             {
-                new Claim(JwtRegisteredClaimNames.Sub, user.Usuario.UserFirstName),
-                new Claim(Constants.NameClaim.JWT_IDUSER.ToString(), user.Usuario.UserId.ToString()),
-                new Claim(JwtRegisteredClaimNames.Email, user.Usuario.UserMail),
+                new Claim(JwtRegisteredClaimNames.Sub, user.Usuario.nom_user),
+                new Claim(Constants.NameClaim.JWT_IDUSER.ToString(), user.Usuario.cod_user.ToString()),
+                new Claim(JwtRegisteredClaimNames.Email, ""),
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
             };
 

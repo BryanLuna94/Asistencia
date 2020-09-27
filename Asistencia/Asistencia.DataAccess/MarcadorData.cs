@@ -42,6 +42,23 @@ namespace Asistencia.DataAccess
             return newId;
         }
 
+        public async Task<int> Update(Marcador marcador)
+        {
+            using SqlConnection con = _connection.DBPLANILLA();
+            SqlCommand cmd = new SqlCommand("usp_tbl_Marcador_Update", con)
+            {
+                CommandType = CommandType.StoredProcedure
+            };
+            cmd.Parameters.Add("@id", SqlDbType.Int).Value = marcador.id;
+            cmd.Parameters.Add("@fecha_hora_marcador", SqlDbType.DateTime).Value = marcador.fecha_hora_marcador;
+            cmd.Parameters.Add("@pUpdateUserId", SqlDbType.VarChar).Value = marcador.UpdateUserId;
+            if (con.State != ConnectionState.Open) { con.Open(); }
+            int rowsAffect = await cmd.ExecuteNonQueryAsync();
+            if (con.State == ConnectionState.Open) { con.Close(); }
+            return rowsAffect;
+        }
+
+
         public List<MarcadorList> List(MarcadorFilter pFilter)
         {
             List<MarcadorList> List = new List<MarcadorList>();
@@ -52,6 +69,7 @@ namespace Asistencia.DataAccess
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.Add("@emp_codigo", SqlDbType.VarChar).Value = pFilter.emp_codigo;
+                    cmd.Parameters.Add("@nro_documento", SqlDbType.VarChar).Value = pFilter.nro_documento;
 
                     if (con.State != ConnectionState.Open) { con.Open(); }
 
@@ -63,6 +81,8 @@ namespace Asistencia.DataAccess
                             {
                                 id = DataReader.GetIntValue(dr, "Id"),
                                 emp_codigo = DataReader.GetStringValue(dr, "Emp_codigo"),
+                                nro_documento = DataReader.GetStringValue(dr, "nro_documento"),
+                                emp_nombre = DataReader.GetStringValue(dr, "emp_nombre"),
                                 fecha_Hora_Actual = DataReader.GetDateTimeValue(dr, "Fecha_Hora_Actual").ToString(),
                                 fecha_Hora_Inicial = DataReader.GetDateTimeValue(dr, "Fecha_Hora_Inicial").ToString(),
                                 fecha_Hora_Final = DataReader.GetDateTimeValue(dr, "Fecha_Hora_Final").ToString(),

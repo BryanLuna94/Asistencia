@@ -41,13 +41,12 @@ namespace Asistencia.DataAccess
                         {
                             return new UserDataType
                             {
-                                UserId = Convert.ToInt32(dr["UserId"]),
-                                UserFirstName = Convert.ToString(dr["UserFirstName"]),
-                                //UserLastName = Convert.ToString(dr["UserLastName"]),
-                                UserMail = Convert.ToString(dr["UserMail"]),
-                                //RoleId = Convert.ToInt32(dr["RoleId"]),
-                                //CompanyId = Convert.ToInt32(dr["RoleId"]),
-                                //IsDisable = Convert.ToBoolean(dr["IsDisable"]),
+                                cod_user = Convert.ToString(dr["Cod_User"]),
+                                nom_user = Convert.ToString(dr["Nom_User"]),
+                                pass_user = Convert.ToString(dr["Pass_User"]),
+                                est_user = Convert.ToString(dr["Est_User"]),
+                                nivel = Convert.ToString(dr["Nivel"]),
+                                codi_sucursal = Convert.ToString(dr["Codi_Sucursal"]),
                             };
                         }
                     }
@@ -67,13 +66,13 @@ namespace Asistencia.DataAccess
                 using (SqlCommand cmd = new SqlCommand("usp_tbl_User_List", con))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.Add("@pRoleId", SqlDbType.Int).Value = pFilter.RoleId;
+                    //cmd.Parameters.Add("@pRoleId", SqlDbType.Int).Value = pFilter.RoleId;
                     cmd.Parameters.Add("@pUserName", SqlDbType.VarChar).Value = pFilter.UserName;
                     cmd.Parameters.Add("@pUserLastName", SqlDbType.VarChar).Value = pFilter.UserLastName;
                     cmd.Parameters.Add("@pUserFirstName", SqlDbType.VarChar).Value = pFilter.UserFirstName;
-                    cmd.Parameters.Add("@pCompanyId", SqlDbType.Int).Value = pFilter.CompanyId;
-                    cmd.Parameters.Add("@pRegionId", SqlDbType.Int).Value = pFilter.RegionId;
-                    cmd.Parameters.Add("@pCountryId", SqlDbType.Int).Value = pFilter.CountryId;
+                    //cmd.Parameters.Add("@pCompanyId", SqlDbType.Int).Value = pFilter.CompanyId;
+                    //cmd.Parameters.Add("@pRegionId", SqlDbType.Int).Value = pFilter.RegionId;
+                    //cmd.Parameters.Add("@pCountryId", SqlDbType.Int).Value = pFilter.CountryId;
 
                     if (con.State != ConnectionState.Open) { con.Open(); }
 
@@ -86,19 +85,19 @@ namespace Asistencia.DataAccess
                                 //CompanyId = DataReader.GetIntValue(dr, "CompanyId"),
                                 UserMail = DataReader.GetStringValue(dr, "UserMail"),
                                 UserFirstName = DataReader.GetStringValue(dr, "UserFirstName"),
-                                //UserLastName = DataReader.GetStringValue(dr, "UserLastName"),
-                                //UserName = DataReader.GetStringValue(dr, "UserName"),
-                                CompanyName = DataReader.GetStringValue(dr, "CompanyName"),
+                                UserLastName = DataReader.GetStringValue(dr, "UserLastName"),
+                                UserName = DataReader.GetStringValue(dr, "UserName"),
+                                //CompanyName = DataReader.GetStringValue(dr, "CompanyName"),
                                 //CreateDate = DataReader.GetDateTimeValue(dr, "CreateDate").Value,
                                 //CreateUserId = DataReader.GetIntValue(dr, "CreateUserId"),
-                                //IsDisable = DataReader.GetBooleanValue(dr, "IsDisable"),
+                                IsDisable = DataReader.GetBooleanValue(dr, "IsDisable"),
                                 //RoleId = DataReader.GetIntValue(dr, "RoleId"),
-                                RoleName = DataReader.GetStringValue(dr, "RoleName"),
-                                //UpdateDate = DataReader.GetDateTimeValue(dr, "UpdateDate"),
-                                //UpdateUserId = DataReader.GetIntValue(dr, "UpdateUserId"),
+                                //RoleName = DataReader.GetStringValue(dr, "RoleName"),
+                                UpdateDate = DataReader.GetDateTimeValue(dr, "UpdateDate"),
+                                UpdateUserId = DataReader.GetStringValue(dr, "UpdateUserId"),
                                 UserId = DataReader.GetIntValue(dr, "UserId"),
-                                CountryName = DataReader.GetStringValue(dr, "CountryName"),
-                                RegionName = DataReader.GetStringValue(dr, "RegionName"),
+                                //CountryName = DataReader.GetStringValue(dr, "CountryName"),
+                                //RegionName = DataReader.GetStringValue(dr, "RegionName"),
                             });
                         }
                     }
@@ -125,18 +124,18 @@ namespace Asistencia.DataAccess
                         {
                             return new UserDataType
                             {
-                                //UpdateUserId = DataReader.GetIntValue(dr, "UpdateUserId"),
+                                UpdateUserId = DataReader.GetStringValue(dr, "UpdateUserId"),
                                 UserId = DataReader.GetIntValue(dr, "UserId"),
-                                //CreateUserId = DataReader.GetIntValue(dr, "CreateUserId"),
-                                //CompanyId = DataReader.GetIntValue(dr, "CompanyId"),
+                                CreateUserId = DataReader.GetStringValue(dr, "CreateUserId"),
+                                CompanyId = DataReader.GetIntValue(dr, "CompanyId"),
                                 UserMail = DataReader.GetStringValue(dr, "UserMail"),
-                                //CreateDate = DataReader.GetDateTimeValue(dr, "CreateDate").Value,
-                                //IsDisable = DataReader.GetBooleanValue(dr, "IsDisable"),
-                                //RoleId = DataReader.GetIntValue(dr, "RoleId"),
-                                //UpdateDate = DataReader.GetDateTimeValue(dr, "UpdateDate"),
+                                CreateDate = DataReader.GetDateTimeValue(dr, "CreateDate").Value,
+                                IsDisable = DataReader.GetBooleanValue(dr, "IsDisable"),
+                                RoleId = DataReader.GetIntValue(dr, "RoleId"),
+                                UpdateDate = DataReader.GetDateTimeValue(dr, "UpdateDate"),
                                 UserFirstName = DataReader.GetStringValue(dr, "UserFirstName"),
-                                //UserLastName = DataReader.GetStringValue(dr, "UserLastName"),
-                                //UserName = DataReader.GetStringValue(dr, "UserName")
+                                UserLastName = DataReader.GetStringValue(dr, "UserLastName"),
+                                UserName = DataReader.GetStringValue(dr, "UserName")
                             };
                         }
                     }
@@ -155,14 +154,14 @@ namespace Asistencia.DataAccess
                 CommandType = CommandType.StoredProcedure
             };
             //cmd.Parameters.Add("@pRoleId", SqlDbType.Int).Value = pEntity.RoleId;
-            //cmd.Parameters.Add("@pUserName", SqlDbType.VarChar).Value = pEntity.UserName;
-            //cmd.Parameters.Add("@pUserPassword", SqlDbType.VarChar).Value = pEntity.UserPassword;
-            //cmd.Parameters.Add("@pUserLastName", SqlDbType.VarChar).Value = pEntity.UserLastName;
+            cmd.Parameters.Add("@pUserName", SqlDbType.VarChar).Value = pEntity.UserName;
+            cmd.Parameters.Add("@pUserPassword", SqlDbType.VarChar).Value = pEntity.UserPassword;
+            cmd.Parameters.Add("@pUserLastName", SqlDbType.VarChar).Value = pEntity.UserLastName;
             cmd.Parameters.Add("@pUserFirstName", SqlDbType.VarChar).Value = pEntity.UserFirstName;
             cmd.Parameters.Add("@pUserMail", SqlDbType.VarChar).Value = pEntity.UserMail;
             //cmd.Parameters.Add("@pCompanyId", SqlDbType.Int).Value = pEntity.CompanyId;
             //cmd.Parameters.Add("@pCreateUserId", SqlDbType.Int).Value = pEntity.CreateUserId;
-            //cmd.Parameters.Add("@pCreateUserId", SqlDbType.Int).Value = pEntity.CreateUserId;
+            cmd.Parameters.Add("@pCreateUserId", SqlDbType.Int).Value = pEntity.CreateUserId;
             cmd.Parameters.Add("@pUserId", SqlDbType.Int).Value = 0;
             cmd.Parameters["@pUserId"].Direction = ParameterDirection.Output;
             if (con.State != ConnectionState.Open) { con.Open(); }
@@ -182,12 +181,12 @@ namespace Asistencia.DataAccess
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.Add("@pUserId", SqlDbType.Int).Value = pEntity.UserId;
             //cmd.Parameters.Add("@pRoleId", SqlDbType.Int).Value = pEntity.RoleId;
-            //cmd.Parameters.Add("@pUserName", SqlDbType.VarChar).Value = pEntity.UserName;
-            //cmd.Parameters.Add("@pUserLastName", SqlDbType.VarChar).Value = pEntity.UserLastName;
+            cmd.Parameters.Add("@pUserName", SqlDbType.VarChar).Value = pEntity.UserName;
+            cmd.Parameters.Add("@pUserLastName", SqlDbType.VarChar).Value = pEntity.UserLastName;
             cmd.Parameters.Add("@pUserFirstName", SqlDbType.VarChar).Value = pEntity.UserFirstName;
             cmd.Parameters.Add("@pUserMail", SqlDbType.VarChar).Value = pEntity.UserMail;
             //cmd.Parameters.Add("@pCompanyId", SqlDbType.Int).Value = pEntity.CompanyId;
-            //cmd.Parameters.Add("@pUpdateUserId", SqlDbType.Int).Value = pEntity.UpdateUserId;
+            cmd.Parameters.Add("@pUpdateUserId", SqlDbType.Int).Value = pEntity.UpdateUserId;
             if (con.State != ConnectionState.Open) { con.Open(); }
             int rowsAffect = await cmd.ExecuteNonQueryAsync();
             if (con.State == ConnectionState.Open) { con.Close(); }
@@ -219,7 +218,7 @@ namespace Asistencia.DataAccess
                 using (SqlCommand cmd = new SqlCommand("usp_tbl_User_ValidateExists", con))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
-                    //cmd.Parameters.Add("@pUserName", SqlDbType.VarChar).Value = pEntity.UserName;
+                    cmd.Parameters.Add("@pUserName", SqlDbType.VarChar).Value = pEntity.UserName;
                     bool openConn = (con.State == ConnectionState.Open);
                     if (!openConn) { con.Open(); }
 

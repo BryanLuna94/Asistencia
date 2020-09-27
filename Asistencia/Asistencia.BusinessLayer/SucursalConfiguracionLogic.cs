@@ -9,6 +9,7 @@ using Asistencia.DataTypes.Objects.Entities;
 using Asistencia.DataTypes.Petitions.Requests;
 using System.Threading.Tasks;
 using Asistencia.DataTypes.Objects.Filters;
+using System;
 
 namespace Asistencia.BusinessLayer
 {
@@ -21,21 +22,68 @@ namespace Asistencia.BusinessLayer
             _baseData = new SucursalConfiguracionData(configuration);
         }
 
-        //public async Task<Response<int>> Insert(SucursalConfiguracionRequest request)
-        //{
-        //    Marcador objMarcador;
-        //    int newId;
+        public Response<SucursalConfiguracionResponse> Select(int pId)
+        {
+            Response<SucursalConfiguracionResponse> response;
+            SucursalConfiguracion objSucursalConfiguracion;
 
-        //    objMarcador = request.marcador;
+            objSucursalConfiguracion = _baseData.Select(pId);
 
-        //    #region Validaciones
+            response = new Response<SucursalConfiguracionResponse>
+            {
+                IsCorrect = true,
+                Value = new SucursalConfiguracionResponse
+                {
+                    ObjectSucursalConfiguracion = objSucursalConfiguracion
+                },
+                Status = Constants.StatusWebApi.OK,
+            };
 
-        //    #endregion
+            return response;
+        }
 
-        //    newId = await _baseData.Insert(objMarcador);
+        public async Task<Response<int>> Insert(SucursalConfiguracionRequest request)
+        {
+            SucursalConfiguracion objSucursalConfiguracion;
+            int newId;
 
-        //    return Functions.ResponseGeneric(newId);
-        //}
+            objSucursalConfiguracion = request.sucursalConfiguracion;
+
+            #region Validaciones
+
+            #endregion
+
+            newId = await _baseData.Insert(objSucursalConfiguracion);
+
+            return Functions.ResponseGeneric(newId);
+        }
+
+        public async Task<Response<int>> Update(string pId, SucursalConfiguracionRequest request)
+        {
+            SucursalConfiguracion objSucursalConfiguracion;
+            SucursalConfiguracion objSucursalConfiguracionOld;
+            int result;
+            int SucursalConfiguracionId;
+
+            objSucursalConfiguracion = request.sucursalConfiguracion;
+            //SucursalConfiguracionId = Convert.ToInt32(pId);
+            //objSucursalConfiguracion.id = SucursalConfiguracionId;
+            //objSucursalConfiguracionOld = _baseData.Select(userId);
+
+            //#region Validaciones
+
+            //if (objUser.UserName != objUserOld.UserName && _userData.ValidateExists(objUser))
+            //{
+            //    return new Response<int> { IsCorrect = false, Status = Constantes.StatusWebApi.ITEM_EXISTS };
+            //}
+
+            //#endregion
+
+            result = await _baseData.Update(objSucursalConfiguracion);
+
+            return Functions.ResponseGeneric(result);
+        }
+
 
         public Response<SucursalConfiguracionResponse> List(SucursalConfiguracionRequest request)
         {

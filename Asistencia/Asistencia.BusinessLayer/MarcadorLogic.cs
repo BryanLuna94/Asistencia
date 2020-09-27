@@ -37,6 +37,15 @@ namespace Asistencia.BusinessLayer
             return Functions.ResponseGeneric(newId);
         }
 
+        public async Task<Response<int>> Update(string pId, MarcadorRequest request)
+        {
+            Marcador objMarcador;
+            int result;
+            objMarcador = request.marcador;
+            result = await _baseData.Update(objMarcador);
+            return Functions.ResponseGeneric(result);
+        }
+
         public Response<MarcadorResponse> List(MarcadorRequest request)
         {
             Response<MarcadorResponse> response;

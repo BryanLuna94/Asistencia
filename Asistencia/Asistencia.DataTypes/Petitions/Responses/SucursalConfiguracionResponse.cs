@@ -7,5 +7,6 @@ namespace Asistencia.DataTypes.Petitions.Responses
     public class SucursalConfiguracionResponse
     {
         public List<SucursalConfiguracionList> ListSucursalConfiguracion { get; set; }
+        public SucursalConfiguracion ObjectSucursalConfiguracion { get; set; }
     }
 }
