@@ -11,7 +11,7 @@
 			</div>
 			<div v-else>
 				<div class="col-sm-12">
-					<div v-if="errorStr==null">
+					<!-- <div v-if="errorStr==null">
 						<div class="card text-white bg-dark mb-3">
 							<div class="card-body">
 								<h5 class="card-title">
@@ -61,142 +61,158 @@
 							
 							</div>
 						</div>
-				
-					</div>
+					</div> -->
+					<!-- <div class="row" v-if="flagSeleccionarSucursal"> -->
 					<div class="row" v-if="flagSeleccionarSucursal">
-						<div class="col-lg-12">
-							<div>
-								<div class="panel-heading">
-									<div class="form-group m-b-0">
-										<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 m-b-5">
-											<!-- <hr /> -->
-											<div class="row">
-												<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2" style="padding-left:1px; padding-right:2px;">
-													<label class="col-xs-12 col-sm-12 col-md-12 col-lg-12 m-b-0 p-0">FECHA:</label>
-												</div>
-												<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2" style="padding-left:2px; padding-right:2px;">
-													<label class="col-xs-12 col-sm-12 col-md-12 col-lg-12 m-b-0 p-0 text-black-50">
-														{{fechaHoy}}
-													</label>
-												</div>
-												<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2" style="padding-left:1px; padding-right:2px;">
-													<label class="col-xs-12 col-sm-12 col-md-12 col-lg-12 m-b-0 p-0">SUCURSAL:</label>
-												</div>
-												<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6" style="padding-left:1px; padding-right:2px;">
-													<label class="col-xs-12 col-sm-12 col-md-12 col-lg-12 m-b-0 p-0 text-black-50">
-														{{objSucursal.codigo_sucursal}} - {{objSucursal.descripcion_sucursal}} 
-													</label>
-												</div>
-											</div>
-										</div>
+						
+						<div class="col-lg-12 card card-default">
+							<div class="panel-heading">
+								<div class="form-group m-b-0">
+									<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 										
-									</div>
-								</div>
-								<div>
-									<div class="panel-body">
-										<form class="form-horizontal">
-											<div class="form-group m-b-0">
-												<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 m-b-5">
-													<div class="row">
-														<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6" style="padding-left:1px; padding-right:2px;">
-
-															<label class="col-xs-12 col-sm-12 col-md-12 col-lg-12 m-b-0 p-0" style="font-size:50px; text-align:center; background-color:black; color:white">
-																{{message}}
-															</label>
-														</div>
-														<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-															<div class="form-group" :class="{ 'form-group--error': $v.codigo.$error }">
-																<label>N° DOCUMENTO</label>
-																<div class="m-b-30">
-																	<input v-focus class="form-control" type="password"  v-model.trim="codigo" @input="setCodigo($event.target.value)" v-on:keyup.enter="LlenarDatosEmpleado" v-on:keyup.delete="LimpiarDatosEmpleado" />
-																</div>
-															</div>
-															<div class="error" v-if="!$v.codigo.required">El campo es requerido.</div>
-															<div class="error" v-if="!$v.codigo.minLength">El codigo debe tener al menos {{$v.codigo.$params.minLength.min}} caracteres.</div>
-															<div v-if="mensaje">{{mensaje}}</div>
-														</div>
-														<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 pull-right">
-															<div class="form-group">
-																<label >MARCADO ESPECIAL</label>
-																<div class="m-b-30">
-																	<input type="checkbox" data-color="#f96262" data-size="small" />
-																</div>
-															</div>
-														</div>
-													</div>
-													<hr />
-													<div>
-														<label>DATOS DEL TRABAJADOR</label>
-													</div>
-													<div class="row">
-														<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2" style="padding-left:1px; padding-right:2px; padding-bottom:2px;">
-															<label class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="vertical-align: central;">
-																TRABAJADOR:
-															</label>
-														</div>
-														<div class="col-xs-1 col-sm-1 col-md-1 col-lg-1" style="padding-left:1px; padding-right:2px; padding-bottom:2px;">
-															<input class="col-xs-12 col-sm-12 col-md-12 col-lg-12" disabled v-model="objEmpleado.emp_codigo" />
-														</div>
-														<div class="col-xs-1 col-sm-1 col-md-1 col-lg-1" style="padding-left:1px; padding-right:2px; padding-bottom:2px;">
-															<input class="col-xs-12 col-sm-12 col-md-12 col-lg-12" disabled v-model="objEmpleado.emp_tipo" />
-														</div>
-														<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" style="padding-left:1px; padding-right:2px; padding-bottom:2px;">
-															<input class="col-xs-12 col-sm-12 col-md-12 col-lg-12" disabled v-model="objEmpleado.emp_nombre" />
-														</div>
-
-														<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2" style="padding-left:1px; padding-right:2px;">
-															<label class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style=" vertical-align: central;">
-																AREA:
-															</label>
-														</div>
-														<div class="col-xs-1 col-sm-1 col-md-1 col-lg-1" style="padding-left:1px; padding-right:2px; padding-bottom:2px;">
-															<input class="col-xs-12 col-sm-12 col-md-12 col-lg-12" disabled v-model="objEmpleado.are_codigo" />
-														</div>
-														<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2" style="padding-left:1px; padding-right:2px; padding-bottom:2px;">
-															<input class="col-xs-12 col-sm-12 col-md-12 col-lg-12" disabled v-model="objEmpleado.are_descripcion" />
-														</div>
-													</div>
-													<div class="row">
-														<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2" style="padding-left:1px; padding-right:2px;">
-															<label class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="vertical-align: central;">
-																SUCURSAL:
-															</label>
-														</div>
-														<div class="col-xs-1 col-sm-1 col-md-1 col-lg-1" style="padding-left:1px; padding-right:2px; padding-bottom:2px;">
-															<input class="col-xs-12 col-sm-12 col-md-12 col-lg-12" disabled v-model="objEmpleado.suc_codigo" />
-														</div>
-														<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4" style="padding-left:1px; padding-right:2px; padding-bottom:2px;">
-															<input class="col-xs-12 col-sm-12 col-md-12 col-lg-12" disabled v-model="objEmpleado.suc_nombre" />
-														</div>
-														<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2" style="padding-left:1px; padding-right:2px;">
-															<label class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="vertical-align: central;">
-																SUB AREA:
-															</label>
-														</div>
-														<div class="col-xs-1 col-sm-1 col-md-1 col-lg-1" style="padding-left:1px; padding-right:2px; padding-bottom:2px;">
-															<input class="col-xs-12 col-sm-12 col-md-12 col-lg-12" disabled v-model="objEmpleado.aresub_codigo" />
-														</div>
-														<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2" style="padding-left:1px; padding-right:2px; padding-bottom:2px;">
-															<input class="col-xs-12 col-sm-12 col-md-12 col-lg-12" disabled v-model="objEmpleado.aresub_descripcion" />
-														</div>
-													</div>
-													<hr />
+										<div class="row" style="padding-top:10px;">
 											
-												</div>
+											<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+												<h4><span>FECHA:</span></h4>
 											</div>
-										</form>
-									</div>
-								</div>
-								<div class="panel-footer">
-									<div class="form-group m-b-0">
-										<div class="row">
-											<div class="col text-center col-sm-12">
-												<button class="btn btn-success btn-lg btn-block" v-on:click.prevent="GuardarMarcadorEmpleado()" :disabled="isDisabled">Marcar</button>
-											</div>							
+											<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2" >
+												<h4><span class="label label-default">
+													{{fechaHoy}}
+												</span></h4>
+											</div>
+											<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2" >
+												<h4><span>SUCURSAL:</span></h4>
+											</div>
+											<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4" >
+												<h4><label class="label label-default">
+													{{objSucursal.codigo_sucursal}} - {{objSucursal.descripcion_sucursal}} 
+												</label></h4>
+											</div>
+											<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 float-right">
+												<div class="float-right">
+													<button v-on:click.prevent="toLogin" class="btn btn-default btn-xs mr-1" type="button">
+														Ingresar
+														<em class="fas fa-sign-in-alt"></em>
+													</button>
+												</div>
+
+											</div>
 										</div>
+									</div>
+									
+								</div>
+							</div>
+							<div>
+								<div class="panel-body">
+									<form class="form-horizontal">
+										<div class="form-group m-b-0">
+											<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 m-b-5">
+												<div class="row">
+													<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6" >
+
+														<label class="col-xs-12 col-sm-12 col-md-12 col-lg-12 m-b-0 p-0" 
+														style="font-size:50px; text-align:center; background-color:black; color:white">
+															{{message}}
+														</label>
+													</div>
+													<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+														<div class="form-group" :class="{ 'form-group--error': $v.codigo.$error }">
+															<label>N° DOCUMENTO</label>
+															<div class="m-b-30">
+																<input v-focus class="form-control" type="password"  v-model.trim="codigo" @input="setCodigo($event.target.value)" v-on:keyup.enter="LlenarDatosEmpleado" v-on:keyup.delete="LimpiarDatosEmpleado" />
+															</div>
+														</div>
+														<div class="error" v-if="!$v.codigo.required">El campo es requerido.</div>
+														<div class="error" v-if="!$v.codigo.minLength">El codigo debe tener al menos {{$v.codigo.$params.minLength.min}} caracteres.</div>
+														<div v-if="mensaje">{{mensaje}}</div>
+													</div>
+													<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 pull-right">
+														<div class="form-group">
+															<!-- <label >MARCADO ESPECIAL</label>
+															<div class="m-b-30">
+																<input type="checkbox" data-color="#f96262" data-size="small" />
+															</div> -->
+														</div>
+													</div>
+												</div>
+												<hr />
+												<div>
+													<h4><label>DATOS DEL TRABAJADOR</label></h4>
+												</div>
+												<div class="row">
+													<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2" style="padding-left:1px; padding-right:2px; padding-bottom:2px;">
+														<label class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="vertical-align: central;">
+															TRABAJADOR:
+														</label>
+													</div>
+													<div class="col-xs-1 col-sm-1 col-md-1 col-lg-1" style="padding-left:1px; padding-right:2px; padding-bottom:2px;">
+														<input class="col-xs-12 col-sm-12 col-md-12 col-lg-12" disabled v-model="objEmpleado.emp_codigo" />
+													</div>
+													<div class="col-xs-1 col-sm-1 col-md-1 col-lg-1" style="padding-left:1px; padding-right:2px; padding-bottom:2px;">
+														<input class="col-xs-12 col-sm-12 col-md-12 col-lg-12" disabled v-model="objEmpleado.emp_tipo" />
+													</div>
+													<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" style="padding-left:1px; padding-right:2px; padding-bottom:2px;">
+														<input class="col-xs-12 col-sm-12 col-md-12 col-lg-12" disabled v-model="objEmpleado.emp_nombre" />
+													</div>
+
+													<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2" style="padding-left:1px; padding-right:2px;">
+														<label class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style=" vertical-align: central;">
+															AREA:
+														</label>
+													</div>
+													<div class="col-xs-1 col-sm-1 col-md-1 col-lg-1" style="padding-left:1px; padding-right:2px; padding-bottom:2px;">
+														<input class="col-xs-12 col-sm-12 col-md-12 col-lg-12" disabled v-model="objEmpleado.are_codigo" />
+													</div>
+													<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2" style="padding-left:1px; padding-right:2px; padding-bottom:2px;">
+														<input class="col-xs-12 col-sm-12 col-md-12 col-lg-12" disabled v-model="objEmpleado.are_descripcion" />
+													</div>
+												</div>
+												<div class="row">
+													<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2" style="padding-left:1px; padding-right:2px;">
+														<label class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="vertical-align: central;">
+															SUCURSAL:
+														</label>
+													</div>
+													<div class="col-xs-1 col-sm-1 col-md-1 col-lg-1" style="padding-left:1px; padding-right:2px; padding-bottom:2px;">
+														<input class="col-xs-12 col-sm-12 col-md-12 col-lg-12" disabled v-model="objEmpleado.suc_codigo" />
+													</div>
+													<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4" style="padding-left:1px; padding-right:2px; padding-bottom:2px;">
+														<input class="col-xs-12 col-sm-12 col-md-12 col-lg-12" disabled v-model="objEmpleado.suc_nombre" />
+													</div>
+													<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2" style="padding-left:1px; padding-right:2px;">
+														<label class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="vertical-align: central;">
+															SUB AREA:
+														</label>
+													</div>
+													<div class="col-xs-1 col-sm-1 col-md-1 col-lg-1" style="padding-left:1px; padding-right:2px; padding-bottom:2px;">
+														<input class="col-xs-12 col-sm-12 col-md-12 col-lg-12" disabled v-model="objEmpleado.aresub_codigo" />
+													</div>
+													<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2" style="padding-left:1px; padding-right:2px; padding-bottom:2px;">
+														<input class="col-xs-12 col-sm-12 col-md-12 col-lg-12" disabled v-model="objEmpleado.aresub_descripcion" />
+													</div>
+												</div>
+												<hr />
+										
+											</div>
+										</div>
+									</form>
+								</div>
+							</div>
+							<div class="panel-footer">
+								<div class="form-group m-b-0">
+									<div class="row">
+										<div class="col text-center col-sm-12">
+											<button class="btn btn-success btn-lg btn-block" v-on:click.prevent="GuardarMarcadorEmpleado()" :disabled="isDisabled">MARCAR</button>
+										</div>							
 									</div>
 								</div>
 							</div>
+						</div>
+						
+					</div>
+					<div class="row" v-else>
+						<div class="col-lg-12 card card text-white bg-warning">
+							FUERA DE RANGO
 						</div>
 					</div>
 				</div>
@@ -233,6 +249,7 @@
 
         mounted(){
 			setInterval(this.callFunction,1000);
+
 		},
         data(){
             return {
@@ -268,7 +285,7 @@
 					}
 
 				],
-
+				listSucursalConfiguracionValida:[],
 				objEmpleado: {
 					emp_codigo: '',
 					emp_tipo: '',
@@ -315,8 +332,25 @@
 	            this.message = currentDateWithFormat;
 	            this.fechaHoy = moment(currentDate, 'YYYY-MM-DD hh:mm:ss').format('DD-MM-YYYY');
 
+				let _this = this;
+				_this.obtenerSucursalConfiguracion('')
+
+				_this.getSucursalConfiguracionValida(_this.listSucursalConfiguracionFiltrada);
+
+				// console.log(_this.listSucursalConfiguracion);
+				// console.log(_this.listSucursalConfiguracionValida);
+				
+				if (_this.listSucursalConfiguracionValida.length>0) {
+					// console.log(_this.listSucursalConfiguracionValida[0]);
+					_this.showMarcador(_this.listSucursalConfiguracionValida[0]);
+				}else{
+					_this.flagSeleccionarSucursal = false;
+				}
+
+
 	        },
-	        LlenarDatosEmpleado: function (e) {
+			
+			LlenarDatosEmpleado: function (e) {
 				
 				let _this = this;
 				_this.ObtenerEmpleado(this.objFilter.codigoAsistencia);
@@ -333,7 +367,7 @@
 				this.objMarcador.longitud = this.location.coords.longitude; 
 				this.objMarcador.latitud = this.location.coords.latitude; 
 				
-				debugger;
+				// debugger;
 				this.GuardarMarcador(this.objMarcador);
 			},
 			
@@ -419,6 +453,7 @@
 				})
 
 			},
+			
 			alertMarcacionIngreso(item) {
 				this.$swal({
 					position: 'top',
@@ -434,6 +469,7 @@
 					this.LimpiarDatosEmpleado();
 				});
 			},
+			
 			alertMarcacionSalida(item) {
 				this.$swal({
 					position: 'top',
@@ -448,6 +484,7 @@
 					this.LimpiarDatosEmpleado();
 				});
 			},
+			
 			alertMarcacionError() {
 				this.$swal({
 					position: 'center-center',
@@ -458,8 +495,9 @@
 					
 				});
 			},
+			
 			GuardarMarcador: async function(item){
-				debugger;
+				// debugger;
 				let _this = this;
 				let data = {
 					marcador: item
@@ -468,7 +506,7 @@
 				var url = functions.getUrlApiAsistencia(constants.configUrlApiAsistencia.MARCADOR_INSERT);
 				await base.sendPost(url, JSON.stringify(data), true).then(function (data){
 					if(data !== undefined){
-						debugger;
+						// debugger;
 						valor = data.data.value;
 						if (valor == 1) {
 							_this.alertMarcacionIngreso(item);
@@ -482,15 +520,18 @@
 				});
 
 			},
+			
 			obtenerLocalizacionManual(){
 				var value = localStorage.getItem(constants.configSession.LOCALIZACION_MANUAL);
 				if (value === null) {
 					this.errorLocalizacionManual = "SinConfiguracionManual";
 				}
 			},
+			
 			degreesToRadians: function(degrees) {
 				return degrees * (Math.PI / 180);
 			},
+			
 			distanceEnMetrosEntreCoordenadas: function(lat1, lon1, lat2, lon2) {
 
 				
@@ -508,6 +549,7 @@
 				var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
 				return Math.round(earthRadiusKm * c * factorConversionToMeters);
 			},
+			
 			obtenerSucursalConfiguracion: async function(item){
 				let _this = this;
 				let data = {
@@ -518,20 +560,28 @@
 				var url = functions.getUrlApiAsistencia(
 					constants.configUrlApiAsistencia.SUCURSALCONFIGURACION_LIST
 				);
-				await base.sendPost(url, JSON.stringify(data), true).then(function(data) {
-					if (data !== undefined) {
-						
-					_this.listSucursalConfiguracion = data.data.value.listSucursalConfiguracion
-						? data.data.value.listSucursalConfiguracion
-						: [];
+				// debugger;
+				axios.post(url, JSON.stringify(data), {
+					headers: {
+						'Content-Type': 'application/json'
+					}
+				})
+				.then(res => {
+					// debugger;
+					if (res.data.isCorrect) {
+						_this.listSucursalConfiguracion = res.data.value.listSucursalConfiguracion
+							? res.data.value.listSucursalConfiguracion
+							: [];
 
-					_this.calcularDistanciaEnMetrosPorSucursal(_this.listSucursalConfiguracion);
-
+						_this.calcularDistanciaEnMetrosPorSucursal(_this.listSucursalConfiguracion);
 					} else {
 						
 					}
+				}).catch(error => {
 				});
+
 			},
+			
 			calcularDistanciaEnMetrosPorSucursal: function(item){
 				let _this = this;
 
@@ -558,14 +608,22 @@
 				_this.listSucursalConfiguracionFiltrada = item.filter(item => item.distancia_metros_calculada === min)
 			},
   
+			getSucursalConfiguracionValida: function(item){
+				let _this = this;
+				_this.listSucursalConfiguracionValida = item.filter(item => item.flag_permitido === true)
+			},
+
 			showMarcador: function(item){
 				let _this = this;
 				_this.flagSeleccionarSucursal = true;
 				_this.objSucursal.codigo_sucursal = item.codigo_sucursal;
 				_this.objSucursal.descripcion_sucursal = item.descripcion_sucursal;
-				console.log(item);
+				// console.log(item);
 			},
 
+			toLogin(){
+				window.location.href = constants.configWebAsistencia.URL_BASE_LOGIN;
+			},
 
 
         },

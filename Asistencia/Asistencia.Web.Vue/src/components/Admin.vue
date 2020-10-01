@@ -18,10 +18,12 @@
 
 
 
+
     </div>
 </template>
 
 <script>
+
     import functions from "@/utility/functions";
     import Vue from 'vue';
     import Header from './Header'

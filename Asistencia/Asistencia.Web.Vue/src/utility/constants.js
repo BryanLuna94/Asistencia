@@ -9,10 +9,10 @@ var constants = {
     },
 
     configWebAsistencia:{
-        URL_BASE_HOME: 'http://localhost:8082/home',
-        URL_BASE_ADMIN: 'http://localhost:8082/admin',
-        URL_BASE_MARCADOR: 'http://localhost:8082/marcador',
-        URL_BASE_LOGIN: 'http://localhost:8082/login',
+        URL_BASE_HOME: 'http://localhost:8080/home',
+        URL_BASE_ADMIN: 'http://localhost:8080/admin',
+        URL_BASE_MARCADOR: 'http://localhost:8080/marcador',
+        URL_BASE_LOGIN: 'http://localhost:8080/login',
         
 
         // URL_BASE_HOME: 'https://marcador-15f7a.web.app/home',
