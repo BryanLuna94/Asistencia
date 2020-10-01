@@ -10,7 +10,7 @@ using Microsoft.Extensions.Configuration;
 
 namespace Asistencia.WebApi.Controllers
 {
-    [Authorize]
+    
     public class SucursalConfiguracionController : Controller
     {
         private readonly SucursalConfiguracionLogic _sucursalconfiguracionLogic;
@@ -20,6 +20,7 @@ namespace Asistencia.WebApi.Controllers
             _sucursalconfiguracionLogic = new SucursalConfiguracionLogic(configuration);
         }
 
+        [Authorize]
         [HttpGet(Constants.RoutesApi.SUCURSALCONFIGURACION_SELECT)]
         [Attributes.Excepcion]
         public IActionResult SelectSucursalConfiguracion(int pId)
@@ -27,7 +28,7 @@ namespace Asistencia.WebApi.Controllers
             var response = _sucursalconfiguracionLogic.Select(pId);
             return Ok(response);
         }
-
+        [Authorize]
         [HttpPost(Constants.RoutesApi.SUCURSALCONFIGURACION_INSERT)]
         [Attributes.Excepcion]
         public async Task<ActionResult> InsertSucursalConfiguracion([FromBody] SucursalConfiguracionRequest request)
@@ -37,6 +38,7 @@ namespace Asistencia.WebApi.Controllers
             return Ok(response);
         }
 
+        [Authorize]
         [HttpPut(Constants.RoutesApi.SUCURSALCONFIGURACION_UPDATE)]
         [Attributes.Excepcion]
         public async Task<IActionResult> UpdateSucursalConfiguracion(string pId, [FromBody] SucursalConfiguracionRequest request)
@@ -46,6 +48,7 @@ namespace Asistencia.WebApi.Controllers
             return Ok(response);
         }
 
+        
         [HttpPost(Constants.RoutesApi.SUCURSALCONFIGURACION_LIST)]
         [Attributes.Excepcion]
         public IActionResult ListSucursalConfiguracion([FromBody] SucursalConfiguracionRequest request)
